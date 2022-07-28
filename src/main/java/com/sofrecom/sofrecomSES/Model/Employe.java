@@ -12,7 +12,7 @@ public class Employe implements Serializable {
     @Id
     @Column(nullable = false , updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long matricule;
+    private Long id;
     @Column(nullable = false , updatable = false)
     private String employeCode;
     @Column(nullable = false)
@@ -79,10 +79,10 @@ public class Employe implements Serializable {
     private List<Experience> experiences;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Certificat> certificats;
+    private List<CertificatDetails> ListCertificatDetails;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Diplome> diplomes;
+    private List<DiplomeDetails> ListDiplomeDetails;
 
     @ManyToMany
     private List<Projet> projets;

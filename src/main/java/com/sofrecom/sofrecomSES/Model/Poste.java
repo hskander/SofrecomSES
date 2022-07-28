@@ -12,7 +12,7 @@ public class Poste implements Serializable {
     @Id
     @Column(nullable = false , updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long matricule;
+    private Long id;
     @Column(nullable = false)
     private String poste;
     private String description;

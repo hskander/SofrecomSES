@@ -8,20 +8,18 @@ import java.util.Date;
 
 @Entity
 @Data
-public class Experience implements Serializable {
+public class CertificatDetails implements Serializable {
+
     @Id
     @Column(nullable = false , updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Temporal(TemporalType.DATE)
-    private Date dateDebut;
+    private Date dateDebutFormation;
     @Temporal(TemporalType.DATE)
-    private Date dateFin;
-    private String poste;
-    private String salaireBrute;
-    private String raisonDepart;
+    private Date dateObtention;
+    private float note;
 
     @ManyToOne
-    private Entreprise entreprise;
-
+    private Certificat certificat;
 }

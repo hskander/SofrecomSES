@@ -13,7 +13,7 @@ public class Projet implements Serializable {
     @Id
     @Column(nullable = false , updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long matricule;
+    private Long id;
     @Column(nullable = false)
     private String projet;
     @Temporal(TemporalType.DATE)

@@ -1,6 +1,9 @@
 package com.sofrecom.sofrecomSES.Controller;
 
+import com.sofrecom.sofrecomSES.Model.Certificat;
+import com.sofrecom.sofrecomSES.Model.Diplome;
 import com.sofrecom.sofrecomSES.Model.Employe;
+import com.sofrecom.sofrecomSES.Model.Experience;
 import com.sofrecom.sofrecomSES.Service.EmployeServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,10 +37,15 @@ public class EmployeRessource {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/addEmployee")
-    public ResponseEntity<Employe> addEmployee(@RequestBody Employe employee){
-        return new ResponseEntity<>(this.employeeService.addEmployee(employee), HttpStatus.CREATED);
-    }
+   /* @PostMapping("/addEmployee")
+    public ResponseEntity<Employe> addEmployee(@RequestBody Employe employe,@RequestParam("posteMatricule") Long posteMatricule,@RequestParam("poleMatricule") Long poleMatricule,
+                                               List<Experience> experiences, List<Diplome> diplomes, List<Certificat> certificats,
+                                               @RequestParam("entrepriseMatricule") Long entrepriseMatricule,@RequestParam("instituMatricule") Long instituMatricule,@RequestParam("cfMatricule") Long cfMatricule){
+
+        return new ResponseEntity<>(this.employeeService.addEmployee(employe,posteMatricule,poleMatricule,
+                experiences,diplomes,certificats,entrepriseMatricule,instituMatricule,cfMatricule
+                ), HttpStatus.CREATED);
+    }*/
 
     @PutMapping("/editEmployee")
     public ResponseEntity<Employe> updateEmployee(@RequestBody Employe employee)
