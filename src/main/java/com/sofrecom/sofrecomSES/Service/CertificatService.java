@@ -18,10 +18,7 @@ public class CertificatService implements CertificatServiceInterface {
         this.centreFormationRepository=centreFormationRepository;
     }
 
-    public Certificat addCertificat(Certificat certificat, Long centreFormationId){
-        CentreFormation centreFormation=this.centreFormationRepository.findCentreFormationById(centreFormationId).
-                orElseThrow(()->new UserNotFoundException("User with ID "+centreFormationId+" was not found" ));
-        certificat.setCentreFormation(centreFormation);
+    public Certificat addCertificat(Certificat certificat){
         return this.certificatRepository.save(certificat);
     }
 }

@@ -18,10 +18,7 @@ public class DiplomeService implements DiplomeServiceInterface {
         this.institutRepository = institutRepository;
     }
 
-    public Diplome addDiplome(Diplome diplome, Long institutId){
-        Institut institut=this.institutRepository.findInstitutById(institutId).
-                orElseThrow(()->new UserNotFoundException("User with ID "+institutId+" was not found" ));
-        diplome.setInstitut(institut);
+    public Diplome addDiplome(Diplome diplome){
         return this.diplomeRepository.save(diplome);
     }
 }

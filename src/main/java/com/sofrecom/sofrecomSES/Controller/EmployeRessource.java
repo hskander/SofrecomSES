@@ -28,7 +28,7 @@ public class EmployeRessource {
     }
     @GetMapping("/find")
     public ResponseEntity<Employe> findEmployeeByMatricule(@RequestParam("id") Long id){
-        Employe employee= this.employeeService.getEmployeByMatricule(id);
+        Employe employee= this.employeeService.getEmployeById(id);
         return new ResponseEntity<>(employee,HttpStatus.OK);
     }
     @DeleteMapping("/deleteEmployee")

@@ -17,7 +17,7 @@ public class DiplomeRessource {
     }
 
     @PostMapping("/addDiplome")
-    public ResponseEntity<Diplome> addDiplome(@RequestBody Diplome diplome,@RequestParam("institutMatricule") Long institutMatricule){
-        return new ResponseEntity<> (this.diplomeService.addDiplome(diplome,institutMatricule),HttpStatus.CREATED);
+    public ResponseEntity<Diplome> addDiplome(@RequestBody Diplome diplome){
+        return new ResponseEntity<> (this.diplomeService.addDiplome(diplome),HttpStatus.CREATED);
     }
 }

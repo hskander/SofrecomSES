@@ -17,7 +17,7 @@ public class CertificatRessource {
     }
 
     @PostMapping("/addCertificat")
-    public ResponseEntity<Certificat> addCertificat(@RequestBody Certificat certificat, @RequestParam("cfMatricule") Long cfMatricule){
-        return new ResponseEntity<> (this.certificatService.addCertificat(certificat,cfMatricule), HttpStatus.CREATED);
+    public ResponseEntity<Certificat> addCertificat(@RequestBody Certificat certificat){
+        return new ResponseEntity<> (this.certificatService.addCertificat(certificat), HttpStatus.CREATED);
     }
 }

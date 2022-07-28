@@ -14,11 +14,9 @@ public class Certificat implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String certificat;
-    private Date datefinFormation;
-    private String descriptionDiplome;
+    private String descriptionCertificat;
     private boolean enLigne;
 
-    @ManyToOne
-    private CentreFormation centreFormation;
+
 
 }

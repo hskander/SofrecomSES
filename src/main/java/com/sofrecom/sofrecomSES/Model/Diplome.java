@@ -4,8 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-
 @Entity
 @Data
 public class Diplome implements Serializable {
@@ -15,8 +13,4 @@ public class Diplome implements Serializable {
     private Long id;
     private String diplome;
     private String descriptionDiplome;
-
-    @ManyToOne
-    private Institut institut;
-
 }

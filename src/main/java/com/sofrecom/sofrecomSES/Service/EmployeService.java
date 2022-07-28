@@ -18,24 +18,25 @@ public class EmployeService implements EmployeServiceInterface {
     private final PoleRepository poleRepo;
     private final PosteRepository posteRepo;
     //Services
-    private final ExperienceService experienceService;
-    private final DiplomeService diplomeService;
-    private final CertificatService certificatService;
+   /* private final ExperienceService experienceService;
+    private final DiplomeDetailsService diplomeDetailsService;
+    private final CertificatDetailsService certificatDetailsService;*/
     @Autowired
     public EmployeService(EmployeeRepository employeeRepo,PoleRepository poleRepo,PosteRepository posteRepo,
-                          ExperienceService experienceService, DiplomeService diplomeService, CertificatService certificatService) {
+                          ExperienceService experienceService, DiplomeDetailsService diplomeDetailsService, CertificatDetailsService certificatDetailsService) {
         this.employeeRepo = employeeRepo;
         this.poleRepo=poleRepo;
         this.posteRepo=posteRepo;
 
-        this.experienceService=experienceService;
-        this.certificatService=certificatService;
-        this.diplomeService=diplomeService;
+        /*this.experienceService=experienceService;
+        this.certificatDetailsService=certificatDetailsService;
+        this.diplomeDetailsService=diplomeDetailsService;*/
     }
 
-    /*public Employe addEmployee(Employe employe, Long posteId, Long poleId,
-                               List<Experience> experiences, List<Diplome> diplomes, List<Certificat> certificats,
-                               Long entrepriseId, Long instituId, Long cfId){
+    public Employe addEmployee(Employe employe, Long posteId, Long poleId,
+                               List<Experience> experiences, List<DiplomeDetails> ListDiplomeDetails,
+                               List<CertificatDetails> ListCertificatDetails
+                               ){
 
         Pole pole = this.poleRepo.findPoleById(poleId).
                 orElseThrow(()->new UserNotFoundException("User with ID "+poleId+" was not found" ));
@@ -45,29 +46,23 @@ public class EmployeService implements EmployeServiceInterface {
         employe.setPoste(poste);
         for(Experience experience :experiences){
             employe.getExperiences().add(experience);
-            this.experienceService.addExperience(experience, entrepriseId);
-
         }
-        for(Diplome diplome :diplomes){
-            employe.getDiplomes().add(diplome);
-            this.diplomeService.addDiplome(diplome, instituId);
-
+        for(DiplomeDetails dd :ListDiplomeDetails){
+            employe.getListDiplomeDetails().add(dd);
         }
-        for(Certificat certificat :certificats){
-            employe.getCertificats().add(certificat);
-            this.certificatService.addCertificat(certificat, cfId);
-
+        for(CertificatDetails cd :ListCertificatDetails){
+            employe.getListCertificatDetails().add(cd);
         }
         employe.setEmployeCode(UUID.randomUUID().toString());
 
         return this.employeeRepo.save(employe);
-    }*/
+    }
 
     public List<Employe> getAllEmployees(){
         return this.employeeRepo.findAll();
     }
 
-    public Employe getEmployeByMatricule(Long id){
+    public Employe getEmployeById(Long id){
         return this.employeeRepo.findEmployeById(id)
                 .orElseThrow(()->new UserNotFoundException("User with ID "+id+" was not found" ));
     }
