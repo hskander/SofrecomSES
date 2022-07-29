@@ -9,4 +9,5 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface CertificatDetailsRepository extends JpaRepository<CertificatDetails,Long> {
+    void deleteCertificatDetailsById(Long id);
 }

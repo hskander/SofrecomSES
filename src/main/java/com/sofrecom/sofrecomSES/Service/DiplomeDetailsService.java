@@ -1,10 +1,7 @@
 package com.sofrecom.sofrecomSES.Service;
 
 import com.sofrecom.sofrecomSES.Exeption.UserNotFoundException;
-import com.sofrecom.sofrecomSES.Model.CentreFormation;
-import com.sofrecom.sofrecomSES.Model.Diplome;
-import com.sofrecom.sofrecomSES.Model.DiplomeDetails;
-import com.sofrecom.sofrecomSES.Model.Institut;
+import com.sofrecom.sofrecomSES.Model.*;
 import com.sofrecom.sofrecomSES.Repository.DiplomeDetailsRepository;
 import com.sofrecom.sofrecomSES.Repository.DiplomeRepository;
 import com.sofrecom.sofrecomSES.Repository.InstitutRepository;
@@ -36,5 +33,13 @@ public class DiplomeDetailsService implements DiplomeDetailsServiceInterface {
         diplomeDetails.setDiplome(diplome);
         diplomeDetails.setInstitut(institut);
         return this.diplomeDetailsRepository.save(diplomeDetails);
+    }
+
+    public DiplomeDetails updateDiplomeDetails(DiplomeDetails diplomeDetail){
+        return diplomeDetailsRepository.save(diplomeDetail);
+    }
+
+    public void deleteDiplomeDetails(Long id) {
+        diplomeDetailsRepository.deleteDiplomeDetailById(id);
     }
 }
