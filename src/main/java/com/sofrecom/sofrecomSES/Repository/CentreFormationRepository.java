@@ -10,6 +10,7 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface CentreFormationRepository extends JpaRepository<CentreFormation,Long> {
-    void deleteCentreFormationById(Long matricule);
+    void deleteCentreFormationById(Long id);
     Optional<CentreFormation> findCentreFormationById(Long id);
+
 }

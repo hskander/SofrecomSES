@@ -59,6 +59,7 @@ public class EmployeService implements EmployeServiceInterface {
     }
 
     public List<Employe> getAllEmployees(){
+
         return this.employeeRepo.findAll();
     }
 
