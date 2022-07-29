@@ -17,26 +17,24 @@ public class EmployeService implements EmployeServiceInterface {
     private final EmployeeRepository employeeRepo;
     private final PoleRepository poleRepo;
     private final PosteRepository posteRepo;
+
     //Services
-   /* private final ExperienceService experienceService;
-    private final DiplomeDetailsService diplomeDetailsService;
-    private final CertificatDetailsService certificatDetailsService;*/
+   private final ExperienceServiceInterface experienceService;
+    private final DiplomeDetailsServiceInterface diplomeDetailsService;
+    private final CertificatDetailsServiceInterface certificatDetailsService;
     @Autowired
     public EmployeService(EmployeeRepository employeeRepo,PoleRepository poleRepo,PosteRepository posteRepo,
-                          ExperienceService experienceService, DiplomeDetailsService diplomeDetailsService, CertificatDetailsService certificatDetailsService) {
+                          ExperienceServiceInterface experienceService, DiplomeDetailsServiceInterface diplomeDetailsService, CertificatDetailsServiceInterface certificatDetailsService) {
         this.employeeRepo = employeeRepo;
         this.poleRepo=poleRepo;
         this.posteRepo=posteRepo;
 
-        /*this.experienceService=experienceService;
+        this.experienceService=experienceService;
         this.certificatDetailsService=certificatDetailsService;
-        this.diplomeDetailsService=diplomeDetailsService;*/
+        this.diplomeDetailsService=diplomeDetailsService;
     }
 
-    public Employe addEmployee(Employe employe, Long posteId, Long poleId,
-                               List<Experience> experiences, List<DiplomeDetails> ListDiplomeDetails,
-                               List<CertificatDetails> ListCertificatDetails
-                               ){
+    public Employe addEmployee(Employe employe, Long posteId, Long poleId){
 
         Pole pole = this.poleRepo.findPoleById(poleId).
                 orElseThrow(()->new UserNotFoundException("User with ID "+poleId+" was not found" ));
@@ -44,18 +42,32 @@ public class EmployeService implements EmployeServiceInterface {
                 orElseThrow(()->new UserNotFoundException("User with ID "+posteId+" was not found" ));
         employe.setPole(pole);
         employe.setPoste(poste);
-        for(Experience experience :experiences){
-            employe.getExperiences().add(experience);
-        }
-        for(DiplomeDetails dd :ListDiplomeDetails){
-            employe.getListDiplomeDetails().add(dd);
-        }
-        for(CertificatDetails cd :ListCertificatDetails){
-            employe.getListCertificatDetails().add(cd);
-        }
         employe.setEmployeCode(UUID.randomUUID().toString());
 
         return this.employeeRepo.save(employe);
+    }
+    public Employe AffecterDiplomeEmployee(DiplomeDetails diplomeDetails,Long employeId,Long diplomeId, Long institutId){
+
+        Employe employe=this.employeeRepo.findEmployeById(employeId).
+                orElseThrow(()->new UserNotFoundException("User with ID "+employeId+" was not found" ));
+        employe.getListDiplomeDetails().add(this.diplomeDetailsService.addDiplomeDetails(diplomeDetails,diplomeId,institutId));
+        return this.employeeRepo.save(employe);
+
+    }
+    public Employe AffecterCertificatEmployee(CertificatDetails certificatDetails,Long employeId,Long certificatId,Long centreFormationId){
+        Employe employe=this.employeeRepo.findEmployeById(employeId).
+                orElseThrow(()->new UserNotFoundException("User with ID "+employeId+" was not found" ));
+        employe.getListCertificatDetails().add(this.certificatDetailsService.addCertificatDetails(certificatDetails,certificatId,centreFormationId));
+        return this.employeeRepo.save(employe);
+
+    }
+
+    public Employe AffecterExperienceEmployee(Experience experience,Long employeId,Long entrepriseId){
+        Employe employe=this.employeeRepo.findEmployeById(employeId).
+                orElseThrow(()->new UserNotFoundException("User with ID "+employeId+" was not found" ));
+        employe.getExperiences().add(this.experienceService.addExperience(experience,entrepriseId));
+       return  this.employeeRepo.save(employe);
+
     }
 
     public List<Employe> getAllEmployees(){

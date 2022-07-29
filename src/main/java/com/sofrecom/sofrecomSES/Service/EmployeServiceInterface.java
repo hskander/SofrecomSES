@@ -5,10 +5,10 @@ import com.sofrecom.sofrecomSES.Model.*;
 import java.util.List;
 
 public interface EmployeServiceInterface {
-    Employe addEmployee(Employe employe, Long posteId, Long poleId,
-                        List<Experience> experiences, List<DiplomeDetails> ListDiplomeDetails,
-                        List<CertificatDetails> ListCertificatDetails
-    );
+    Employe addEmployee(Employe employe, Long posteId, Long poleId);
+    Employe AffecterDiplomeEmployee(DiplomeDetails diplomeDetails,Long employeId,Long diplomeId, Long institutId);
+    Employe AffecterCertificatEmployee(CertificatDetails certificatDetails,Long employeId,Long certificatId,Long centreFormationId);
+    Employe AffecterExperienceEmployee(Experience experience,Long employeId,Long entrepriseId);
     List<Employe> getAllEmployees();
     Employe getEmployeById(Long id);
     Employe updateEmployee(Employe e);

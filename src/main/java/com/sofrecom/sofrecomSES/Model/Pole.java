@@ -1,5 +1,6 @@
 package com.sofrecom.sofrecomSES.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ public class Pole implements Serializable {
     private String pole;
     private String description;
     private String responsablePole;
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pole")
     private List<Employe> employes;
 

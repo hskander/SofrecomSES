@@ -1,5 +1,6 @@
 package com.sofrecom.sofrecomSES.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Projet implements Serializable {
     private Boolean enCours;
     private String chefProjet;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "projets")
     private List<Employe> employes;
 }

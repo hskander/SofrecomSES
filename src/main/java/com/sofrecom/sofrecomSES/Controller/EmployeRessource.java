@@ -1,9 +1,6 @@
 package com.sofrecom.sofrecomSES.Controller;
 
-import com.sofrecom.sofrecomSES.Model.Certificat;
-import com.sofrecom.sofrecomSES.Model.Diplome;
-import com.sofrecom.sofrecomSES.Model.Employe;
-import com.sofrecom.sofrecomSES.Model.Experience;
+import com.sofrecom.sofrecomSES.Model.*;
 import com.sofrecom.sofrecomSES.Service.EmployeServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,19 +34,32 @@ public class EmployeRessource {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-   /* @PostMapping("/addEmployee")
-    public ResponseEntity<Employe> addEmployee(@RequestBody Employe employe,@RequestParam("posteMatricule") Long posteMatricule,@RequestParam("poleMatricule") Long poleMatricule,
-                                               List<Experience> experiences, List<Diplome> diplomes, List<Certificat> certificats,
-                                               @RequestParam("entrepriseMatricule") Long entrepriseMatricule,@RequestParam("instituMatricule") Long instituMatricule,@RequestParam("cfMatricule") Long cfMatricule){
-
-        return new ResponseEntity<>(this.employeeService.addEmployee(employe,posteMatricule,poleMatricule,
-                experiences,diplomes,certificats,entrepriseMatricule,instituMatricule,cfMatricule
-                ), HttpStatus.CREATED);
-    }*/
+    @PostMapping("/addEmployee")
+    public ResponseEntity<Employe> addEmployee(@RequestBody Employe employe,@RequestParam("posteId") Long posteId,@RequestParam("poleId") Long poleId){
+        return new ResponseEntity<>(this.employeeService.addEmployee(employe,posteId,poleId), HttpStatus.CREATED);
+    }
 
     @PutMapping("/editEmployee")
     public ResponseEntity<Employe> updateEmployee(@RequestBody Employe employee)
     {
         return new ResponseEntity<>(this.employeeService.updateEmployee(employee),HttpStatus.OK);
+    }
+    @PutMapping("/AffecterDiplomeEmployee")
+    public ResponseEntity<Employe> AffecterDiplomeEmployee(@RequestBody DiplomeDetails diplomeDetails,@RequestParam("employeId") Long employeId
+            ,@RequestParam("diplomeId")Long diplomeId,@RequestParam("institutId") Long institutId)
+    {
+        return new ResponseEntity<>(this.employeeService.AffecterDiplomeEmployee(diplomeDetails,employeId,diplomeId,institutId),HttpStatus.OK);
+    }
+    @PutMapping("/AffecterCertificatEmployee")
+    public ResponseEntity<Employe> AffecterCertificatEmployee(@RequestBody CertificatDetails certificatDetails,@RequestParam("employeId") Long employeId
+            ,@RequestParam("certificatId")Long certificatId,@RequestParam("centreFormationId") Long centreFomationId)
+    {
+        return new ResponseEntity<>(this.employeeService.AffecterCertificatEmployee(certificatDetails,employeId,certificatId,centreFomationId),HttpStatus.OK);
+    }
+    @PutMapping("/AffecterExperienceEmployee")
+    public ResponseEntity<Employe> AffecterExperienceEmployee(@RequestBody Experience experience,@RequestParam("employeId") Long employeId
+    ,@RequestParam("entrepriseId") Long entrepriseId)
+    {
+        return new ResponseEntity<>(this.employeeService.AffecterExperienceEmployee(experience,employeId,entrepriseId),HttpStatus.OK);
     }
 }
