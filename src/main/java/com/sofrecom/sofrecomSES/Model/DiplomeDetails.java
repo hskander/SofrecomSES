@@ -23,4 +23,7 @@ public class DiplomeDetails implements Serializable {
     private Diplome diplome;
     @ManyToOne
     private Institut institut;
+    @ManyToOne
+    private Employe employe;
+
 }

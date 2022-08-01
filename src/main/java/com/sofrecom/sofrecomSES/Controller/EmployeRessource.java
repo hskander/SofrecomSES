@@ -62,4 +62,15 @@ public class EmployeRessource {
     {
         return new ResponseEntity<>(this.employeeService.AffecterExperienceEmployee(experience,employeId,entrepriseId),HttpStatus.OK);
     }
+    @GetMapping("/searchEmployeeByNomPrenom")
+    public ResponseEntity<List<Employe>> searchEmployeeByNomPrenom(@RequestParam("nomPrenom") String nomPrenom){
+        return new ResponseEntity<>(this.employeeService.findEmployeesByNomPrenomEmail(nomPrenom), HttpStatus.OK);
+    }
+
+    @GetMapping("/searchEmployeeByPoste")
+    public ResponseEntity<List<Employe>> searchEmployeeByPoste(@RequestParam("poste") String poste){
+        return new ResponseEntity<>(this.employeeService.findEmployeesByPoste(poste), HttpStatus.OK);
+    }
+
+
 }

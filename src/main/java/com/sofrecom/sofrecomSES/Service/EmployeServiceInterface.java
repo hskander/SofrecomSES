@@ -15,4 +15,6 @@ public interface EmployeServiceInterface {
     void deleteEmployee(Long id);
     Employe findEmployePoleManager(Long emlpoyeId);
     public Employe findEmployeDirectionManager(Long emlpoyeId);
+    List<Employe> findEmployeesByNomPrenomEmail(String nomPrenom);
+    List<Employe> findEmployeesByPoste(String poste);
 }
