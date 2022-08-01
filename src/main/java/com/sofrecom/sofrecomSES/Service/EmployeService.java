@@ -22,9 +22,11 @@ public class EmployeService implements EmployeServiceInterface {
    private final ExperienceServiceInterface experienceService;
     private final DiplomeDetailsServiceInterface diplomeDetailsService;
     private final CertificatDetailsServiceInterface certificatDetailsService;
+    //private final PoleServiceInterface poleService;
     @Autowired
     public EmployeService(EmployeeRepository employeeRepo,PoleRepository poleRepo,PosteRepository posteRepo,
-                          ExperienceServiceInterface experienceService, DiplomeDetailsServiceInterface diplomeDetailsService, CertificatDetailsServiceInterface certificatDetailsService) {
+                          ExperienceServiceInterface experienceService, DiplomeDetailsServiceInterface diplomeDetailsService, CertificatDetailsServiceInterface certificatDetailsService
+                          /*PoleServiceInterface poleService*/) {
         this.employeeRepo = employeeRepo;
         this.poleRepo=poleRepo;
         this.posteRepo=posteRepo;
@@ -32,14 +34,15 @@ public class EmployeService implements EmployeServiceInterface {
         this.experienceService=experienceService;
         this.certificatDetailsService=certificatDetailsService;
         this.diplomeDetailsService=diplomeDetailsService;
+        //this.poleService=poleService;
     }
 
     public Employe addEmployee(Employe employe, Long posteId, Long poleId){
 
         Pole pole = this.poleRepo.findPoleById(poleId).
-                orElseThrow(()->new UserNotFoundException("User with ID "+poleId+" was not found" ));
+                orElseThrow(()->new UserNotFoundException("Pole with ID "+poleId+" was not found" ));
         Poste poste= this.posteRepo.findPosteById(posteId).
-                orElseThrow(()->new UserNotFoundException("User with ID "+posteId+" was not found" ));
+                orElseThrow(()->new UserNotFoundException("Poste with ID "+posteId+" was not found" ));
         employe.setPole(pole);
         employe.setPoste(poste);
         employe.setEmployeCode(UUID.randomUUID().toString());
@@ -49,14 +52,14 @@ public class EmployeService implements EmployeServiceInterface {
     public Employe AffecterDiplomeEmployee(DiplomeDetails diplomeDetails,Long employeId,Long diplomeId, Long institutId){
 
         Employe employe=this.employeeRepo.findEmployeById(employeId).
-                orElseThrow(()->new UserNotFoundException("User with ID "+employeId+" was not found" ));
+                orElseThrow(()->new UserNotFoundException("Employe with ID "+employeId+" was not found" ));
         employe.getListDiplomeDetails().add(this.diplomeDetailsService.addDiplomeDetails(diplomeDetails,diplomeId,institutId));
         return this.employeeRepo.save(employe);
 
     }
     public Employe AffecterCertificatEmployee(CertificatDetails certificatDetails,Long employeId,Long certificatId,Long centreFormationId){
         Employe employe=this.employeeRepo.findEmployeById(employeId).
-                orElseThrow(()->new UserNotFoundException("User with ID "+employeId+" was not found" ));
+                orElseThrow(()->new UserNotFoundException("Employe with ID "+employeId+" was not found" ));
         employe.getListCertificatDetails().add(this.certificatDetailsService.addCertificatDetails(certificatDetails,certificatId,centreFormationId));
         return this.employeeRepo.save(employe);
 
@@ -64,7 +67,7 @@ public class EmployeService implements EmployeServiceInterface {
 
     public Employe AffecterExperienceEmployee(Experience experience,Long employeId,Long entrepriseId){
         Employe employe=this.employeeRepo.findEmployeById(employeId).
-                orElseThrow(()->new UserNotFoundException("User with ID "+employeId+" was not found" ));
+                orElseThrow(()->new UserNotFoundException("Employe with ID "+employeId+" was not found" ));
         employe.getExperiences().add(this.experienceService.addExperience(experience,entrepriseId));
        return  this.employeeRepo.save(employe);
 
@@ -76,7 +79,7 @@ public class EmployeService implements EmployeServiceInterface {
 
     public Employe getEmployeById(Long id){
         return this.employeeRepo.findEmployeById(id)
-                .orElseThrow(()->new UserNotFoundException("User with ID "+id+" was not found" ));
+                .orElseThrow(()->new UserNotFoundException("Employe with ID "+id+" was not found" ));
     }
 
     public Employe updateEmployee(Employe e){
@@ -86,6 +89,17 @@ public class EmployeService implements EmployeServiceInterface {
 
     public void deleteEmployee(Long id){
         this.employeeRepo.deleteEmployeById(id);
+    }
+
+    public Employe findEmployePoleManager(Long emlpoyeId){
+        Employe employe =this.employeeRepo.findEmployeById(emlpoyeId)
+                .orElseThrow(()->new UserNotFoundException("Employe with ID "+emlpoyeId+" was not found" ));
+        return employe.getPole().getManager();
+    }
+    public Employe findEmployeDirectionManager(Long emlpoyeId){
+        Employe employe =this.employeeRepo.findEmployeById(emlpoyeId)
+                .orElseThrow(()->new UserNotFoundException("Employe with ID "+emlpoyeId+" was not found" ));
+        return employe.getPole().getDirection().getManager();
     }
 
 

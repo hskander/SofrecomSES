@@ -13,4 +13,6 @@ public interface EmployeServiceInterface {
     Employe getEmployeById(Long id);
     Employe updateEmployee(Employe e);
     void deleteEmployee(Long id);
+    Employe findEmployePoleManager(Long emlpoyeId);
+    public Employe findEmployeDirectionManager(Long emlpoyeId);
 }
