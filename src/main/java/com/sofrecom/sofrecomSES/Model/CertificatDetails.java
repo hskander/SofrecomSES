@@ -24,4 +24,6 @@ public class CertificatDetails implements Serializable {
     private Certificat certificat;
     @ManyToOne
     private CentreFormation centreFormation;
+    @ManyToOne
+    private Employe employe;
 }

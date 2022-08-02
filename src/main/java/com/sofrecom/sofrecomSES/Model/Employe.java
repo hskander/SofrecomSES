@@ -75,13 +75,13 @@ public class Employe implements Serializable {
     @ManyToOne
     private Poste poste;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "employe")
     private List<Experience> experiences;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "employe")
     private List<CertificatDetails> ListCertificatDetails;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "employe")
     private List<DiplomeDetails> ListDiplomeDetails;
 
     @ManyToMany

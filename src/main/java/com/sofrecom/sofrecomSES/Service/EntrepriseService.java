@@ -3,7 +3,6 @@ package com.sofrecom.sofrecomSES.Service;
 import com.sofrecom.sofrecomSES.Exeption.UserNotFoundException;
 import com.sofrecom.sofrecomSES.Model.Entreprise;
 import com.sofrecom.sofrecomSES.Repository.EntrepriseRepository;
-import com.sofrecom.sofrecomSES.Repository.InstitutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +28,7 @@ public class EntrepriseService implements EntrepriseServiceInterface {
 
     public Entreprise getEntrepriseById(Long id){
         return entrepriseRepository.findEntrepriseById(id).
-                orElseThrow(() -> new UserNotFoundException("User by id"+ id+"was not found"));
+                orElseThrow(() -> new UserNotFoundException("Entreprise"+ id+"was not found"));
     }
     public void deleteEntreprise(Long id){
         entrepriseRepository.deleteEntrepriseById(id);

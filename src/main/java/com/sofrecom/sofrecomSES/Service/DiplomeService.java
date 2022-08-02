@@ -2,11 +2,13 @@ package com.sofrecom.sofrecomSES.Service;
 
 import com.sofrecom.sofrecomSES.Exeption.UserNotFoundException;
 import com.sofrecom.sofrecomSES.Model.Diplome;
-import com.sofrecom.sofrecomSES.Model.Institut;
+import com.sofrecom.sofrecomSES.Model.Entreprise;
 import com.sofrecom.sofrecomSES.Repository.DiplomeRepository;
 import com.sofrecom.sofrecomSES.Repository.InstitutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class DiplomeService implements DiplomeServiceInterface {
@@ -21,4 +23,27 @@ public class DiplomeService implements DiplomeServiceInterface {
     public Diplome addDiplome(Diplome diplome){
         return this.diplomeRepository.save(diplome);
     }
+
+    public List<Diplome> getAllDiplomes(){
+        return diplomeRepository.findAll();
+    }
+
+    public  Diplome updateDiplome(Diplome diplome){
+        return diplomeRepository.save(diplome);
+    }
+
+    public Diplome getDiplomeById(Long id){
+        return diplomeRepository.findDiplomeById(id).
+                orElseThrow(() -> new UserNotFoundException("Diplome"+ id+"was not found"));
+    }
+
+    public void deleteDiplome(Long id){
+        diplomeRepository.deleteDiplomeById(id);
+    }
+
 }
+
+
+
+
+
