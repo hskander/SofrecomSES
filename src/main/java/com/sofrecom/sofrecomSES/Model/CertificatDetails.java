@@ -1,5 +1,6 @@
 package com.sofrecom.sofrecomSES.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class CertificatDetails implements Serializable {
     private Certificat certificat;
     @ManyToOne
     private CentreFormation centreFormation;
+    @JsonIgnore
     @ManyToOne
     private Employe employe;
 }

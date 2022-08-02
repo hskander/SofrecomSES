@@ -17,7 +17,8 @@ public class ExperienceRessource {
     }
 
     @PostMapping("/addExperience")
-    public ResponseEntity<Experience> addExperience(@RequestBody Experience experience, @RequestParam("entrepriseMatricule") Long entrepriseMatricule){
-        return new ResponseEntity<> (this.experienceService.addExperience(experience,entrepriseMatricule), HttpStatus.CREATED);
+    public ResponseEntity<Experience> addExperience(@RequestBody Experience experience, @RequestParam("entrepriseMatricule") Long entrepriseMatricule
+    ,@RequestParam("employeId") Long employeId){
+        return new ResponseEntity<> (this.experienceService.addExperience(experience,entrepriseMatricule,employeId), HttpStatus.CREATED);
     }
 }

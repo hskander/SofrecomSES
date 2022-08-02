@@ -63,27 +63,23 @@ public class EmployeService implements EmployeServiceInterface {
     }
     @Override
     public Employe AffecterDiplomeEmployee(DiplomeDetails diplomeDetails,Long employeId,Long diplomeId, Long institutId){
-
-        Employe employe=this.employeeRepo.findEmployeById(employeId).
+        this.diplomeDetailsService.addDiplomeDetails(diplomeDetails,diplomeId,institutId,employeId);
+        return this.employeeRepo.findEmployeById(employeId).
                 orElseThrow(()->new UserNotFoundException("Employe with ID "+employeId+" was not found" ));
-        employe.getListDiplomeDetails().add(this.diplomeDetailsService.addDiplomeDetails(diplomeDetails,diplomeId,institutId));
-        return this.employeeRepo.save(employe);
-
     }
     @Override
     public Employe AffecterCertificatEmployee(CertificatDetails certificatDetails,Long employeId,Long certificatId,Long centreFormationId){
-        Employe employe=this.employeeRepo.findEmployeById(employeId).
+        this.certificatDetailsService.addCertificatDetails(certificatDetails,certificatId,centreFormationId,employeId);
+        return this.employeeRepo.findEmployeById(employeId).
                 orElseThrow(()->new UserNotFoundException("Employe with ID "+employeId+" was not found" ));
-        employe.getListCertificatDetails().add(this.certificatDetailsService.addCertificatDetails(certificatDetails,certificatId,centreFormationId));
-        return this.employeeRepo.save(employe);
 
     }
     @Override
     public Employe AffecterExperienceEmployee(Experience experience,Long employeId,Long entrepriseId){
-        Employe employe=this.employeeRepo.findEmployeById(employeId).
+
+       this.experienceService.addExperience(experience,entrepriseId,employeId);
+       return this.employeeRepo.findEmployeById(employeId).
                 orElseThrow(()->new UserNotFoundException("Employe with ID "+employeId+" was not found" ));
-        employe.getExperiences().add(this.experienceService.addExperience(experience,entrepriseId));
-       return  this.employeeRepo.save(employe);
 
     }
     @Override

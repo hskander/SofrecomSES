@@ -15,6 +15,6 @@ import java.util.List;
 @Repository
 @Transactional
 public interface ExperienceRepository extends JpaRepository<Experience,Long> {
-    @Query("SELECT e.employe form Entreprise e WHERE e.entreprise=:entreprise")
+    @Query("SELECT e.employe FROM Experience e WHERE e.entreprise=:entreprise")
     List<Employe> findEmployeesByEntreprise(@Param("entreprise")Entreprise entreprise);
 }

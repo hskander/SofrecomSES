@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 @Transactional
 public interface DiplomeDetailsRepository extends JpaRepository<DiplomeDetails,Long> {
-    @Query("SELECT d.employe form DiplomeDetails d WHERE d.institut =:institut")
+    @Query("SELECT d.employe FROM DiplomeDetails d WHERE d.institut =:institut")
     List<Employe> findEmployeesByInstitut(@Param("institut") Institut institut);
 }
