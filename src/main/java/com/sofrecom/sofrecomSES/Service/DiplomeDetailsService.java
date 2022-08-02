@@ -25,7 +25,7 @@ public class DiplomeDetailsService implements DiplomeDetailsServiceInterface {
         this.diplomeRepository=diplomeRepository;
         this.institutRepository=institutRepository;
     }
-
+    @Override
     public DiplomeDetails addDiplomeDetails(DiplomeDetails diplomeDetails, Long idDiplome,Long idInstitut){
         Diplome diplome=this.diplomeRepository.findDiplomeById(idDiplome).
                 orElseThrow(()->new UserNotFoundException("User with ID "+idDiplome+" was not found" ));

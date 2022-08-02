@@ -16,7 +16,7 @@ public class PoleService implements PoleServiceInterface {
     public PoleService(PoleRepository poleRepository) {
         this.poleRepository = poleRepository;
     }
-
+    @Override
     public Employe findPoleManager(Long poleId){
         Pole pole =this.poleRepository.findPoleById(poleId).
                 orElseThrow(()->new UserNotFoundException("pole with ID "+poleId+" was not found" ));

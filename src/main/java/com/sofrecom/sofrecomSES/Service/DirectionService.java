@@ -25,7 +25,6 @@ public class DirectionService implements DirectionServiceInterface {
                 orElseThrow(()->new UserNotFoundException("Direction with ID "+directionId+" was not found" ))
                 .getManager();
     }
-
     @Override
     public List<Employe> findEmployeesDirection(Long directionId) {
         List<Pole> allPoles= this.directionRepository.findDirectionById(directionId).

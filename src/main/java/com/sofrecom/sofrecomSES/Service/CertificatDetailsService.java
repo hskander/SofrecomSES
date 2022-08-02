@@ -22,7 +22,7 @@ public class CertificatDetailsService implements CertificatDetailsServiceInterfa
         this.certificatRepositry=certificatRepositry;
         this.cfRepo=cfRepo;
     }
-
+    @Override
     public CertificatDetails addCertificatDetails(CertificatDetails certificatDetails, Long idCertificat,Long idCentreFormation){
         Certificat certificat = this.certificatRepositry.findCertificatById(idCertificat).
                 orElseThrow(()->new UserNotFoundException("User with ID "+idCertificat+" was not found" ));

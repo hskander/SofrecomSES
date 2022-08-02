@@ -17,7 +17,7 @@ public class CertificatService implements CertificatServiceInterface {
         this.certificatRepository = certificatRepository;
         this.centreFormationRepository=centreFormationRepository;
     }
-
+    @Override
     public Certificat addCertificat(Certificat certificat){
         return this.certificatRepository.save(certificat);
     }
