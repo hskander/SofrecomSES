@@ -2,9 +2,7 @@ package com.sofrecom.sofrecomSES.Service;
 
 import com.sofrecom.sofrecomSES.Exeption.UserNotFoundException;
 import com.sofrecom.sofrecomSES.Model.*;
-import com.sofrecom.sofrecomSES.Repository.EmployeeRepository;
-import com.sofrecom.sofrecomSES.Repository.PoleRepository;
-import com.sofrecom.sofrecomSES.Repository.PosteRepository;
+import com.sofrecom.sofrecomSES.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +20,20 @@ public class EmployeService implements EmployeServiceInterface {
    private final ExperienceServiceInterface experienceService;
     private final DiplomeDetailsServiceInterface diplomeDetailsService;
     private final CertificatDetailsServiceInterface certificatDetailsService;
-    //private final PoleServiceInterface poleService;
+    private final CentreFormationRepository centreFormationRepository;
+    private final InstitutRepository institutRepository;
+    private final EntrepriseRepository entrepriseRepository;
+
+    private final ExperienceRepository experienceRepository;
+    private final DiplomeDetailsRepository diplomeDetailsRepository;
+    private final CertificatDetailsRepository certificatDetailsRepository;
+
     @Autowired
     public EmployeService(EmployeeRepository employeeRepo,PoleRepository poleRepo,PosteRepository posteRepo,
                           ExperienceServiceInterface experienceService, DiplomeDetailsServiceInterface diplomeDetailsService, CertificatDetailsServiceInterface certificatDetailsService
-                          /*PoleServiceInterface poleService*/) {
+                          ,CentreFormationRepository centreFormationRepository, InstitutRepository institutRepository,
+                          EntrepriseRepository entrepriseRepository,ExperienceRepository experienceRepository,
+                          DiplomeDetailsRepository diplomeDetailsRepository,CertificatDetailsRepository certificatDetailsRepository) {
         this.employeeRepo = employeeRepo;
         this.poleRepo=poleRepo;
         this.posteRepo=posteRepo;
@@ -34,7 +41,12 @@ public class EmployeService implements EmployeServiceInterface {
         this.experienceService=experienceService;
         this.certificatDetailsService=certificatDetailsService;
         this.diplomeDetailsService=diplomeDetailsService;
-        //this.poleService=poleService;
+        this.centreFormationRepository=centreFormationRepository;
+        this.institutRepository=institutRepository;
+        this.entrepriseRepository=entrepriseRepository;
+        this.experienceRepository=experienceRepository;
+        this.diplomeDetailsRepository=diplomeDetailsRepository;
+        this.certificatDetailsRepository=certificatDetailsRepository;
     }
     @Override
     public Employe addEmployee(Employe employe, Long posteId, Long poleId){
@@ -115,6 +127,27 @@ public class EmployeService implements EmployeServiceInterface {
         return this.employeeRepo.findEmployeesByPoste(poste);
     }
 
+    @Override
+    public List<Employe> findEmployeesByCentreFormation(Long centreFormationId) {
+        CentreFormation centreFormation=this.centreFormationRepository.findCentreFormationById(centreFormationId).
+                orElseThrow(()->new UserNotFoundException("CentreFormation with ID "+centreFormationId+" was not found" ));
+        return this.certificatDetailsRepository.findEmployeesByCentreFormation(centreFormation);
+
+    }
+
+    @Override
+    public List<Employe> findEmployeesByInstitut(Long institutId) {
+        Institut institut=this.institutRepository.findInstitutById(institutId).
+                orElseThrow(()->new UserNotFoundException("institut with ID "+institutId+" was not found" ));
+        return this.diplomeDetailsRepository.findEmployeesByInstitut(institut);
+    }
+
+    @Override
+    public List<Employe> findEmployeesByEntreprise(Long entrepriseId) {
+        Entreprise entreprise=this.entrepriseRepository.findEntrepriseById(entrepriseId).
+                orElseThrow(()->new UserNotFoundException("entreprise with ID "+entrepriseId+" was not found" ));
+        return this.experienceRepository.findEmployeesByEntreprise(entreprise);
+    }
 
 
 }

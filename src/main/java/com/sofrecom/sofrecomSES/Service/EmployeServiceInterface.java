@@ -17,4 +17,7 @@ public interface EmployeServiceInterface {
     public Employe findEmployeDirectionManager(Long emlpoyeId);
     List<Employe> findEmployeesByNomPrenomEmail(String nomPrenom);
     List<Employe> findEmployeesByPoste(String poste);
+    List<Employe> findEmployeesByCentreFormation(Long centreFormationId);
+    List<Employe> findEmployeesByInstitut(Long institutId);
+    List<Employe> findEmployeesByEntreprise(Long entrepriseId);
 }

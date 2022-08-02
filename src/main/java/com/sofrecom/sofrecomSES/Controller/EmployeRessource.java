@@ -72,5 +72,18 @@ public class EmployeRessource {
         return new ResponseEntity<>(this.employeeService.findEmployeesByPoste(poste), HttpStatus.OK);
     }
 
+    @GetMapping("/getEmployeesByCentreFormation")
+    public ResponseEntity<List<Employe>> getEmployeesByCentreFormation(@RequestParam("centreFormationId") Long centreFormationId){
+        return new ResponseEntity<>(this.employeeService.findEmployeesByCentreFormation(centreFormationId), HttpStatus.OK);
+    }
+    @GetMapping("/getEmployeesByInstitut")
+    public ResponseEntity<List<Employe>> getEmployeesByInstitut(@RequestParam("institutId") Long institutId){
+        return new ResponseEntity<>(this.employeeService.findEmployeesByInstitut(institutId), HttpStatus.OK);
+    }
+    @GetMapping("/getEmployeesByEntreprise")
+    public ResponseEntity<List<Employe>> getEmployeesByEntreprise(@RequestParam("entrepriseId") Long entrepriseId){
+        return new ResponseEntity<>(this.employeeService.findEmployeesByEntreprise(entrepriseId), HttpStatus.OK);
+    }
+
 
 }
