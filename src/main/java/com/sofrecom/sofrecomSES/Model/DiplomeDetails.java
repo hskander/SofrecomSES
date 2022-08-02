@@ -8,7 +8,6 @@ import java.util.Date;
 @Entity
 @Data
 public class DiplomeDetails implements Serializable {
-
     @Id
     @Column(nullable = false , updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,4 +22,6 @@ public class DiplomeDetails implements Serializable {
     private Diplome diplome;
     @ManyToOne
     private Institut institut;
+    @ManyToOne
+    private Employe employe;
 }

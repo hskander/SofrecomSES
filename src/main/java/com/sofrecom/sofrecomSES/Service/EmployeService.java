@@ -17,47 +17,14 @@ public class EmployeService implements EmployeServiceInterface {
     private final EmployeeRepository employeeRepo;
     private final PoleRepository poleRepo;
     private final PosteRepository posteRepo;
-    //Services
-   /* private final ExperienceService experienceService;
-    private final DiplomeDetailsService diplomeDetailsService;
-    private final CertificatDetailsService certificatDetailsService;*/
+
     @Autowired
     public EmployeService(EmployeeRepository employeeRepo,PoleRepository poleRepo,PosteRepository posteRepo,
                           ExperienceService experienceService, DiplomeDetailsService diplomeDetailsService, CertificatDetailsService certificatDetailsService) {
         this.employeeRepo = employeeRepo;
         this.poleRepo=poleRepo;
         this.posteRepo=posteRepo;
-
-        /*this.experienceService=experienceService;
-        this.certificatDetailsService=certificatDetailsService;
-        this.diplomeDetailsService=diplomeDetailsService;*/
     }
-
-    public Employe addEmployee(Employe employe, Long posteId, Long poleId,
-                               List<Experience> experiences, List<DiplomeDetails> ListDiplomeDetails,
-                               List<CertificatDetails> ListCertificatDetails
-                               ){
-
-        Pole pole = this.poleRepo.findPoleById(poleId).
-                orElseThrow(()->new UserNotFoundException("User with ID "+poleId+" was not found" ));
-        Poste poste= this.posteRepo.findPosteById(posteId).
-                orElseThrow(()->new UserNotFoundException("User with ID "+posteId+" was not found" ));
-        employe.setPole(pole);
-        employe.setPoste(poste);
-        for(Experience experience :experiences){
-            employe.getExperiences().add(experience);
-        }
-        for(DiplomeDetails dd :ListDiplomeDetails){
-            employe.getListDiplomeDetails().add(dd);
-        }
-        for(CertificatDetails cd :ListCertificatDetails){
-            employe.getListCertificatDetails().add(cd);
-        }
-        employe.setEmployeCode(UUID.randomUUID().toString());
-
-        return this.employeeRepo.save(employe);
-    }
-
     public List<Employe> getAllEmployees(){
         return this.employeeRepo.findAll();
     }

@@ -23,5 +23,7 @@ public class Experience implements Serializable {
 
     @ManyToOne
     private Entreprise entreprise;
+    @ManyToOne
+    private Employe employe;
 
 }
