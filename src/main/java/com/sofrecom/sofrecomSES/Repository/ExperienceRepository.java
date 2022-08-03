@@ -9,4 +9,5 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface ExperienceRepository extends JpaRepository<Experience,Long> {
+    void deleteExperienceById(Long id);
 }

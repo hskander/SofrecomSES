@@ -36,4 +36,16 @@ public class CertificatDetailsService implements CertificatDetailsServiceInterfa
         return this.certificatDetailsRepository.save(certificatDetails);
 
     }
+
+    public CertificatDetails updateCertificatDetails(CertificatDetails certifDetail){
+        return certificatDetailsRepository.save(certifDetail);
+    }
+
+    public void deleteCertificatDetails(Long id) {
+        certificatDetailsRepository.deleteCertificatDetailsById(id);
+    }
+
+
+
+
 }
