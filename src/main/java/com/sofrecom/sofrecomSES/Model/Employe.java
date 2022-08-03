@@ -84,7 +84,7 @@ public class Employe implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "employe")
     private List<DiplomeDetails> ListDiplomeDetails;
-
+    @JsonIgnore
     @ManyToMany
     private List<Projet> projets;
 

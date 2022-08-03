@@ -25,7 +25,7 @@ public class Projet implements Serializable {
     private Boolean enCours;
     private String chefProjet;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToMany(mappedBy = "projets")
     private List<Employe> employes;
 }
