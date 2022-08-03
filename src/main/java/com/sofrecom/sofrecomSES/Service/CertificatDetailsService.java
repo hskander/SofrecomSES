@@ -4,7 +4,6 @@ import com.sofrecom.sofrecomSES.Exeption.UserNotFoundException;
 import com.sofrecom.sofrecomSES.Model.CentreFormation;
 import com.sofrecom.sofrecomSES.Model.Certificat;
 import com.sofrecom.sofrecomSES.Model.CertificatDetails;
-import com.sofrecom.sofrecomSES.Model.Poste;
 import com.sofrecom.sofrecomSES.Repository.CentreFormationRepository;
 import com.sofrecom.sofrecomSES.Repository.CertificatDetailsRepository;
 import com.sofrecom.sofrecomSES.Repository.CertificatRepositry;
@@ -45,4 +44,8 @@ public class CertificatDetailsService implements CertificatDetailsServiceInterfa
     public void deleteCertificatDetails(Long id) {
         certificatDetailsRepository.deleteCertificatDetailsById(id);
     }
+
+
+
+
 }

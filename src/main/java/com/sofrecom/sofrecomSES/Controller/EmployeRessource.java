@@ -1,7 +1,6 @@
 package com.sofrecom.sofrecomSES.Controller;
 
 import com.sofrecom.sofrecomSES.Model.*;
-import com.sofrecom.sofrecomSES.Service.CertificatDetailsService;
 import com.sofrecom.sofrecomSES.Service.CertificatDetailsServiceInterface;
 import com.sofrecom.sofrecomSES.Service.DiplomeDetailsServiceInterface;
 import com.sofrecom.sofrecomSES.Service.EmployeServiceInterface;
@@ -42,16 +41,6 @@ public class EmployeRessource {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-   /* @PostMapping("/addEmployee")
-    public ResponseEntity<Employe> addEmployee(@RequestBody Employe employe,@RequestParam("posteMatricule") Long posteMatricule,@RequestParam("poleMatricule") Long poleMatricule,
-                                               List<Experience> experiences, List<Diplome> diplomes, List<Certificat> certificats,
-                                               @RequestParam("entrepriseMatricule") Long entrepriseMatricule,@RequestParam("instituMatricule") Long instituMatricule,@RequestParam("cfMatricule") Long cfMatricule){
-
-        return new ResponseEntity<>(this.employeeService.addEmployee(employe,posteMatricule,poleMatricule,
-                experiences,diplomes,certificats,entrepriseMatricule,instituMatricule,cfMatricule
-                ), HttpStatus.CREATED);
-    }*/
-
     @PutMapping("/editEmployee")
     public ResponseEntity<Employe> updateEmployee(@RequestBody Employe employee)
     {
@@ -64,19 +53,20 @@ public class EmployeRessource {
         return new ResponseEntity<>(this.certificatDetailsService.updateCertificatDetails(certifDetail),HttpStatus.OK);
     }
 
-    @DeleteMapping("/deleteCertifDetails")
+    @DeleteMapping("/deleteCertifDetails/{id}")
     public ResponseEntity<?> deleteCertificatDetail(@RequestParam("id") Long id){
         this.certificatDetailsService.deleteCertificatDetails(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
     @PutMapping("/editDiplomeDetails")
-    public ResponseEntity<DiplomeDetails> updateCertificatDetails(@RequestBody DiplomeDetails diplomeDetail)
+    public ResponseEntity<DiplomeDetails> updateDiplomeDetails(@RequestBody DiplomeDetails diplomeDetail)
     {
         return new ResponseEntity<>(this.diplomeDetailService.updateDiplomeDetails(diplomeDetail),HttpStatus.OK);
     }
 
-    @DeleteMapping("/deleteDiplomeDetails")
+    @DeleteMapping("/deleteDiplomeDetails/{id}")
     public ResponseEntity<?> deleteDiplomeDetail(@RequestParam("id") Long id){
         this.diplomeDetailService.deleteDiplomeDetails(id);
         return new ResponseEntity<>(HttpStatus.OK);

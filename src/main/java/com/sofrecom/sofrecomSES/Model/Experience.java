@@ -1,5 +1,6 @@
 package com.sofrecom.sofrecomSES.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,5 +24,8 @@ public class Experience implements Serializable {
 
     @ManyToOne
     private Entreprise entreprise;
+    @JsonIgnore
+    @ManyToOne
+    private Employe employe;
 
 }
