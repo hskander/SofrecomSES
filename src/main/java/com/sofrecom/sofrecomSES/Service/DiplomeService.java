@@ -17,7 +17,7 @@ public class DiplomeService implements DiplomeServiceInterface {
         this.diplomeRepository = diplomeRepository;
         this.institutRepository = institutRepository;
     }
-
+    @Override
     public Diplome addDiplome(Diplome diplome){
         return this.diplomeRepository.save(diplome);
     }

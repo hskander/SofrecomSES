@@ -30,5 +30,4 @@ public class PosteService implements PosteServiceInterface {
     public void deletePoste(Long id) {
         posteRepository.deletePosteById(id);
     }
-
 }
