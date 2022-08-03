@@ -39,6 +39,11 @@ public class ProjetRessource {
     public ResponseEntity<Projet> addEmployee(@RequestBody Projet projet){
         return new ResponseEntity<>(this.projetService.addProjet(projet), HttpStatus.CREATED);
     }
+    @PutMapping("/updateProjet")
+    public ResponseEntity<Projet> updateProjet(@RequestBody Projet projet){
+        return new ResponseEntity<>(this.projetService.updateProjet(projet),HttpStatus.OK);
+    }
+
     @PutMapping("/affecterEmployeToProjet")
     public ResponseEntity<Projet> affecterEmployeToProjet(@RequestParam("projetId") Long projetId,@RequestParam("employeId") Long employeId){
         return new ResponseEntity<>(this.projetService.affecterEmployeToProjet(projetId,employeId),HttpStatus.OK);
