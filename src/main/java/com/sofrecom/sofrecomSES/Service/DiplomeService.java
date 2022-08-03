@@ -2,7 +2,6 @@ package com.sofrecom.sofrecomSES.Service;
 
 import com.sofrecom.sofrecomSES.Exeption.UserNotFoundException;
 import com.sofrecom.sofrecomSES.Model.Diplome;
-import com.sofrecom.sofrecomSES.Model.Entreprise;
 import com.sofrecom.sofrecomSES.Repository.DiplomeRepository;
 import com.sofrecom.sofrecomSES.Repository.InstitutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,6 @@ public class DiplomeService implements DiplomeServiceInterface {
     public void deleteDiplome(Long id){
         diplomeRepository.deleteDiplomeById(id);
     }
-
 }
 
 

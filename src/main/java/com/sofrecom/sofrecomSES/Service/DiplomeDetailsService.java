@@ -1,7 +1,6 @@
 package com.sofrecom.sofrecomSES.Service;
 
 import com.sofrecom.sofrecomSES.Exeption.UserNotFoundException;
-import com.sofrecom.sofrecomSES.Model.CentreFormation;
 import com.sofrecom.sofrecomSES.Model.Diplome;
 import com.sofrecom.sofrecomSES.Model.DiplomeDetails;
 import com.sofrecom.sofrecomSES.Model.Institut;
@@ -11,7 +10,6 @@ import com.sofrecom.sofrecomSES.Repository.InstitutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
 
 @Service
 public class DiplomeDetailsService implements DiplomeDetailsServiceInterface {

@@ -28,7 +28,6 @@ public class EmployeService implements EmployeServiceInterface {
     }
 
     public List<Employe> getAllEmployees(){
-
         return this.employeeRepo.findAll();
     }
 
@@ -38,7 +37,6 @@ public class EmployeService implements EmployeServiceInterface {
     }
 
     public Employe updateEmployee(Employe e){
-
         return this.employeeRepo.save(e);
     }
 

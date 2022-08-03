@@ -16,8 +16,7 @@ public class EntrepriseService implements EntrepriseServiceInterface {
     public EntrepriseService(EntrepriseRepository entrepriseRepository) {
         this.entrepriseRepository = entrepriseRepository;
     }
-    public Entreprise addEntreprise(Entreprise entreprise){
-        return entrepriseRepository.save(entreprise);
+    public Entreprise addEntreprise(Entreprise entreprise){return entrepriseRepository.save(entreprise);
     }
     public List<Entreprise> getAllEntreprises(){
         return entrepriseRepository.findAll();

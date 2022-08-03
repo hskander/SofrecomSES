@@ -21,14 +21,12 @@ public class CentreFormationRessource {
     public ResponseEntity<List<CentreFormation>> getAllCentresFormation() {
         List<CentreFormation> centresFormation = centreFormationService.getAllCentresFormation();
         return new ResponseEntity<>(centresFormation, HttpStatus.OK);
-
     }
 
     @GetMapping("/find/{id}")
     public ResponseEntity<CentreFormation> getCentreFormationById(@PathVariable("id") Long id) {
         CentreFormation centreFormation = centreFormationService.getCentreFormationById(id);
         return new ResponseEntity<>(centreFormation, HttpStatus.OK);
-
     }
 
     @PostMapping("/add")

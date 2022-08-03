@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Data
@@ -19,6 +18,4 @@ public class Institut implements Serializable {
     private String adresse;
     private String email ;
     private Long numTel;
-
-
 }

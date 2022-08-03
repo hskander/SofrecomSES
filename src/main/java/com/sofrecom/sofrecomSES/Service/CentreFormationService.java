@@ -32,7 +32,6 @@ public class CentreFormationService implements CentreFormationServiceInterface {
     public CentreFormation getCentreFormationById(Long id){
         return centreFormationRepository.findCentreFormationById(id).
                 orElseThrow(() -> new UserNotFoundException("Centre de formation"+ id+"was not found"));
-
     }
     public void deleteCentreFormation(Long id){
         centreFormationRepository.deleteCentreFormationById(id);

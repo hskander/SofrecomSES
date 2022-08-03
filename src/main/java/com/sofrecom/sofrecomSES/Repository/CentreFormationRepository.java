@@ -12,5 +12,4 @@ import java.util.Optional;
 public interface CentreFormationRepository extends JpaRepository<CentreFormation,Long> {
     void deleteCentreFormationById(Long id);
     Optional<CentreFormation> findCentreFormationById(Long id);
-
 }

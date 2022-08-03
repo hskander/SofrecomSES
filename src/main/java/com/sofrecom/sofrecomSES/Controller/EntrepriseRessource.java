@@ -23,38 +23,31 @@ public class EntrepriseRessource {
     public ResponseEntity<List<Entreprise>> getAllEntreprises() {
         List<Entreprise> entreprises = entrepriseService.getAllEntreprises();
         return new ResponseEntity<>(entreprises, HttpStatus.OK);
-
     }
 
     @GetMapping("/find/{id}")
     public ResponseEntity<Entreprise> getEntrepriseById(@PathVariable("id") Long id) {
         Entreprise entreprise= entrepriseService.getEntrepriseById(id);
         return new ResponseEntity<>(entreprise, HttpStatus.OK);
-
     }
 
     @PostMapping("/add")
     public ResponseEntity<Entreprise> AddEntreprise(@RequestBody Entreprise entreprise) {
         Entreprise newEntreprise = entrepriseService.addEntreprise(entreprise);
         return new ResponseEntity<>(newEntreprise, HttpStatus.CREATED);
-
     }
+
     @PutMapping("/update")
     public ResponseEntity<Entreprise> UpdateEntreprise(@RequestBody Entreprise entreprise) {
         Entreprise updateEntreprise = entrepriseService.updateEntreprise(entreprise);
         return new ResponseEntity<>(updateEntreprise, HttpStatus.OK);
-
-
     }
 
     @DeleteMapping ("/delete/{id}")
     public ResponseEntity<?> DeleteEntreprise(@PathVariable("id") Long id) {
         entrepriseService.deleteEntreprise(id);
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
-
-
 }
 
 

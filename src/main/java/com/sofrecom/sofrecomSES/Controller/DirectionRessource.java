@@ -11,7 +11,6 @@ public class DirectionRessource {
     private final DirectionServiceInterface directionService;
     @Autowired
     public DirectionRessource(DirectionServiceInterface directionService) {
-
         this.directionService = directionService;
     }
 }

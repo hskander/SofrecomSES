@@ -1,7 +1,5 @@
 package com.sofrecom.sofrecomSES.Repository;
 
-import com.sofrecom.sofrecomSES.Model.CentreFormation;
-import com.sofrecom.sofrecomSES.Model.Employe;
 import com.sofrecom.sofrecomSES.Model.Entreprise;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

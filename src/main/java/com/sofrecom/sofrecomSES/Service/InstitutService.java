@@ -20,6 +20,7 @@ public class InstitutService implements InstitutServiceInterface {
         return institutRepository.save(institut);
     }
     public List<Institut> getAllInstituts(){
+
         return institutRepository.findAll();
     }
     public  Institut updateInstitut(Institut institut){
