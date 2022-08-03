@@ -42,6 +42,7 @@ public class CertificatDetailsService implements CertificatDetailsServiceInterfa
     }
 
     public void deleteCertificatDetails(Long id) {
+
         certificatDetailsRepository.deleteCertificatDetailsById(id);
     }
 

@@ -53,12 +53,11 @@ public class EmployeRessource {
         return new ResponseEntity<>(this.certificatDetailsService.updateCertificatDetails(certifDetail),HttpStatus.OK);
     }
 
-    @DeleteMapping("/deleteCertifDetails/{id}")
+    @DeleteMapping("/deleteCertifDetails")
     public ResponseEntity<?> deleteCertificatDetail(@RequestParam("id") Long id){
         this.certificatDetailsService.deleteCertificatDetails(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
     @PutMapping("/editDiplomeDetails")
     public ResponseEntity<DiplomeDetails> updateDiplomeDetails(@RequestBody DiplomeDetails diplomeDetail)
@@ -66,11 +65,10 @@ public class EmployeRessource {
         return new ResponseEntity<>(this.diplomeDetailService.updateDiplomeDetails(diplomeDetail),HttpStatus.OK);
     }
 
-    @DeleteMapping("/deleteDiplomeDetails/{id}")
+    @DeleteMapping("/deleteDiplomeDetails")
     public ResponseEntity<?> deleteDiplomeDetail(@RequestParam("id") Long id){
         this.diplomeDetailService.deleteDiplomeDetails(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
 }

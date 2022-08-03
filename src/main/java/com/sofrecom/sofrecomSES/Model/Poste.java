@@ -1,5 +1,6 @@
 package com.sofrecom.sofrecomSES.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Poste implements Serializable {
     private String poste;
     private String description;
 
+    @JsonIgnore
     @OneToMany(/*cascade = CascadeType.ALL,*/ mappedBy = "poste")
     private List<Employe> employes;
 
