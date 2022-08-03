@@ -14,11 +14,7 @@ import java.util.List;
 @Repository
 @Transactional
 public interface DiplomeDetailsRepository extends JpaRepository<DiplomeDetails,Long> {
-<<<<<<< HEAD
     void deleteDiplomeDetailById(Long id);
-
-=======
     @Query("SELECT d.employe FROM DiplomeDetails d WHERE d.institut =:institut")
     List<Employe> findEmployeesByInstitut(@Param("institut") Institut institut);
->>>>>>> skanderHAMDI
 }

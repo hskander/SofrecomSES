@@ -9,20 +9,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-<<<<<<< HEAD
 import java.util.Optional;
-=======
 import java.util.List;
->>>>>>> skanderHAMDI
 
 @Repository
 @Transactional
 public interface CertificatDetailsRepository extends JpaRepository<CertificatDetails,Long> {
-<<<<<<< HEAD
     void deleteCertificatDetailsById(Long id);
-
-=======
     @Query("SELECT cd.employe FROM CertificatDetails cd WHERE cd.centreFormation=:centreFormation")
     List<Employe> findEmployeesByCentreFormation(@Param("centreFormation") CentreFormation centreFormation);
->>>>>>> skanderHAMDI
 }
