@@ -1,5 +1,6 @@
 package com.sofrecom.sofrecomSES.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,9 +16,9 @@ public class Employe implements Serializable {
     private Long id;
     @Column(nullable = false , updatable = false)
     private String employeCode;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String nom;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String prenom;
     @Enumerated(EnumType.STRING)
     private Genre genre;
@@ -26,14 +27,14 @@ public class Employe implements Serializable {
     private Date dateNaissance;
     private String LieuNaissance;
     private String Nationalite;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String mail;
     @Temporal(TemporalType.DATE)
     private Date dateRecrut;
     @Temporal(TemporalType.DATE)
     private Date dateDepart;
     //urgence
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Long numTel;
     private String nomUrgence;
     private Long numUrgence;
@@ -44,7 +45,7 @@ public class Employe implements Serializable {
     private String numPasseport;
     @Temporal(TemporalType.DATE)
     private Date dateExpPasseport;
-    @Column(nullable = false , updatable = false)
+    //@Column(nullable = false , updatable = false)
     private Long numCin;
     @Temporal(TemporalType.DATE)
     private Date delivDate;
@@ -83,12 +84,9 @@ public class Employe implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "employe")
     private List<DiplomeDetails> ListDiplomeDetails;
-
+    @JsonIgnore
     @ManyToMany
     private List<Projet> projets;
-
-
-
 
 
 

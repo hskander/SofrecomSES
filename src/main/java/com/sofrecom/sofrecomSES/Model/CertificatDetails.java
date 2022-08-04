@@ -1,5 +1,6 @@
 package com.sofrecom.sofrecomSES.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,7 +10,6 @@ import java.util.Date;
 @Entity
 @Data
 public class CertificatDetails implements Serializable {
-
     @Id
     @Column(nullable = false , updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +24,7 @@ public class CertificatDetails implements Serializable {
     private Certificat certificat;
     @ManyToOne
     private CentreFormation centreFormation;
+    @JsonIgnore
     @ManyToOne
     private Employe employe;
 }

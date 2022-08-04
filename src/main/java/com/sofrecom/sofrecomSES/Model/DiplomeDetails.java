@@ -1,14 +1,14 @@
 package com.sofrecom.sofrecomSES.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
 @Entity
 @Data
 public class DiplomeDetails implements Serializable {
-
     @Id
     @Column(nullable = false , updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +23,7 @@ public class DiplomeDetails implements Serializable {
     private Diplome diplome;
     @ManyToOne
     private Institut institut;
+    @JsonIgnore
     @ManyToOne
     private Employe employe;
 }

@@ -11,3 +11,4 @@ public interface DiplomeServiceInterface {
     Diplome updateDiplome( Diplome diplome);
     void  deleteDiplome(Long id);
 }
+

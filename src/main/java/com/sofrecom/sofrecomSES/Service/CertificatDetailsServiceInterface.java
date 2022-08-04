@@ -2,6 +2,11 @@ package com.sofrecom.sofrecomSES.Service;
 
 import com.sofrecom.sofrecomSES.Model.CertificatDetails;
 
+import java.util.Optional;
+
 public interface CertificatDetailsServiceInterface {
-    CertificatDetails addCertificatDetails(CertificatDetails certificatDetails, Long idCertificat,Long idCentreFormation);
+    void deleteCertificatDetails(Long id);
+
+    CertificatDetails updateCertificatDetails(CertificatDetails certifDetail);
+    CertificatDetails addCertificatDetails(CertificatDetails certificatDetails, Long idCertificat,Long idCentreFormation,Long employeId);
 }
