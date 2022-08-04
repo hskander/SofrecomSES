@@ -25,6 +25,7 @@ public class Pole implements Serializable {
     @ManyToOne
     private Direction direction;
 
+    @JsonIgnore
     @OneToOne
     private Employe manager;
 }

@@ -18,8 +18,8 @@ public class Direction implements Serializable {
     private String direction;
     private String description;
     private String responsableDirection;
-
-
+    
+    @JsonIgnore
     @OneToOne
     private Employe manager;
     @JsonIgnore
