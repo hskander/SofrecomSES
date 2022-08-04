@@ -44,10 +44,12 @@ public class CertificatDetailsService implements CertificatDetailsServiceInterfa
 
     }
 
+    @Override
     public CertificatDetails updateCertificatDetails(CertificatDetails certifDetail){
         return certificatDetailsRepository.save(certifDetail);
     }
 
+    @Override
     public void deleteCertificatDetails(Long id) {
         certificatDetailsRepository.deleteCertificatDetailsById(id);
     }

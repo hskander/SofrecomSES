@@ -15,18 +15,23 @@ public class PosteService implements PosteServiceInterface {
     public PosteService(PosteRepository posteRepository) {
         this.posteRepository = posteRepository;
     }
+
+    @Override
     public Poste addPoste(Poste poste){
         return posteRepository.save(poste);
     }
 
+    @Override
     public List<Poste> findAllPostes(){
         return posteRepository.findAll();
     }
 
+    @Override
     public Poste updatePoste(Poste poste){
         return posteRepository.save(poste);
     }
 
+    @Override
     public void deletePoste(Long id) {
         posteRepository.deletePosteById(id);
     }

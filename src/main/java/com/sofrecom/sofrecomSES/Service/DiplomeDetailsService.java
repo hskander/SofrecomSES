@@ -40,10 +40,12 @@ public class DiplomeDetailsService implements DiplomeDetailsServiceInterface {
         return this.diplomeDetailsRepository.save(diplomeDetails);
     }
 
+    @Override
     public DiplomeDetails updateDiplomeDetails(DiplomeDetails diplomeDetail){
         return diplomeDetailsRepository.save(diplomeDetail);
     }
 
+    @Override
     public void deleteDiplomeDetails(Long id) {
         diplomeDetailsRepository.deleteDiplomeDetailById(id);
     }

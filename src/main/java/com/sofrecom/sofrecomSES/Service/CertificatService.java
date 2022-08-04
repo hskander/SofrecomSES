@@ -25,14 +25,17 @@ public class CertificatService implements CertificatServiceInterface {
         return this.certificatRepository.save(certificat);
     }
 
+    @Override
     public List<Certificat> findAllCertificat(){
         return certificatRepository.findAll();
     }
 
+    @Override
     public Certificat updateCertificat(Certificat certif){
         return certificatRepository.save(certif);
     }
 
+    @Override
     public void deleteCertificat(Long id) {
         certificatRepository.deleteCertificatById(id);
     }
