@@ -3,6 +3,7 @@ package com.sofrecom.sofrecomSES.Controller;
 import com.sofrecom.sofrecomSES.Model.Direction;
 import com.sofrecom.sofrecomSES.Model.Pole;
 import com.sofrecom.sofrecomSES.Service.PoleService;
+import com.sofrecom.sofrecomSES.Model.Employe;
 import com.sofrecom.sofrecomSES.Service.PoleServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,4 +50,8 @@ public class PoleRessource {
         return new ResponseEntity<> (this.poleService.editPole(pole), HttpStatus.CREATED);
     }
 
+    @GetMapping("/EmployeesByPole")
+    public ResponseEntity<List<Employe>> findEmployeesPole(@RequestParam("poleId") Long poleId){
+        return new ResponseEntity<>(this.poleService.findEmployeesPole(poleId), HttpStatus.OK);
+    }
 }

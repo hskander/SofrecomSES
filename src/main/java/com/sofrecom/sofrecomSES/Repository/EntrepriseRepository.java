@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface EntrepriseRepository extends JpaRepository<Entreprise,Long> {
+
     void deleteEntrepriseById(Long id);
-    Optional<Entreprise> findEntrepriseById(Long id);
-}
+    Optional<Entreprise> findEntrepriseById(Long id);}

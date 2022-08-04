@@ -1,5 +1,6 @@
 package com.sofrecom.sofrecomSES.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -83,12 +84,9 @@ public class Employe implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "employe")
     private List<DiplomeDetails> ListDiplomeDetails;
-
+    @JsonIgnore
     @ManyToMany
     private List<Projet> projets;
-
-
-
 
 
 

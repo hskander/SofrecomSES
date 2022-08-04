@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/Direction")
 public class DirectionRessource {
@@ -18,7 +17,6 @@ public class DirectionRessource {
 
     @Autowired
     public DirectionRessource(DirectionServiceInterface directionService) {
-
         this.directionService = directionService;
     }
 
@@ -50,5 +48,8 @@ public class DirectionRessource {
         this.directionService.deleteDirection(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+    @GetMapping("/findEmployeesDirection")
+    public ResponseEntity<List<Employe>> findEmployeesDirection(@RequestParam("directionId") Long directionId){
+        return new ResponseEntity<>(this.directionService.findEmployeesDirection(directionId), HttpStatus.OK);
+    }
 }

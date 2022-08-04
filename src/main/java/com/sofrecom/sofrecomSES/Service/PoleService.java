@@ -6,6 +6,7 @@ import com.sofrecom.sofrecomSES.Model.Employe;
 import com.sofrecom.sofrecomSES.Model.Pole;
 import com.sofrecom.sofrecomSES.Repository.DirectionRepository;
 import com.sofrecom.sofrecomSES.Repository.EmployeeRepository;
+import com.sofrecom.sofrecomSES.Model.Employe;
 import com.sofrecom.sofrecomSES.Repository.PoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,18 @@ public class PoleService implements PoleServiceInterface {
     @Override
     public Pole editPole(Pole pole){
         return this.poleRepository.save(pole);
+    }
+    @Override
+    public Employe findPoleManager(Long poleId){
+        Pole pole =this.poleRepository.findPoleById(poleId).
+                orElseThrow(()->new UserNotFoundException("pole with ID "+poleId+" was not found" ));
+        return pole.getManager();
+    }
+
+    @Override
+    public List<Employe> findEmployeesPole(Long poleId) {
+        return this.poleRepository.findPoleById(poleId).
+                orElseThrow(()->new UserNotFoundException("Pole with ID "+poleId+" was not found" )).getEmployes();
     }
 }
 

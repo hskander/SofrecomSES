@@ -1,6 +1,7 @@
 package com.sofrecom.sofrecomSES.Service;
 
 import com.sofrecom.sofrecomSES.Model.Direction;
+import com.sofrecom.sofrecomSES.Model.Employe;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface DirectionServiceInterface {
     void deleteDirection(Long id);
 
     Direction addDirection(Direction direction,Long employeId);
+    Employe findDirectionManager(Long directionId);
+    List<Employe> findEmployeesDirection(Long directionId);
 }
