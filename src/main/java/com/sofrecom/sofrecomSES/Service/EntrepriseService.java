@@ -16,19 +16,25 @@ public class EntrepriseService implements EntrepriseServiceInterface {
     public EntrepriseService(EntrepriseRepository entrepriseRepository) {
         this.entrepriseRepository = entrepriseRepository;
     }
+    @Override
     public Entreprise addEntreprise(Entreprise entreprise){return entrepriseRepository.save(entreprise);
     }
+    @Override
     public List<Entreprise> getAllEntreprises(){
         return entrepriseRepository.findAll();
     }
+
+    @Override
     public  Entreprise updateEntreprise(Entreprise entreprise){
         return entrepriseRepository.save(entreprise);
     }
 
+    @Override
     public Entreprise getEntrepriseById(Long id){
         return entrepriseRepository.findEntrepriseById(id).
                 orElseThrow(() -> new UserNotFoundException("Entreprise"+ id+"was not found"));
     }
+    @Override
     public void deleteEntreprise(Long id){
         entrepriseRepository.deleteEntrepriseById(id);
     }

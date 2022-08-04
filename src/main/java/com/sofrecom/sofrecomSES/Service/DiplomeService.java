@@ -18,24 +18,29 @@ public class DiplomeService implements DiplomeServiceInterface {
         this.diplomeRepository = diplomeRepository;
         this.institutRepository = institutRepository;
     }
+
     @Override
     public Diplome addDiplome(Diplome diplome){
         return this.diplomeRepository.save(diplome);
     }
 
+    @Override
     public List<Diplome> getAllDiplomes(){
         return diplomeRepository.findAll();
     }
 
+    @Override
     public  Diplome updateDiplome(Diplome diplome){
         return diplomeRepository.save(diplome);
     }
 
+    @Override
     public Diplome getDiplomeById(Long id){
         return diplomeRepository.findDiplomeById(id).
                 orElseThrow(() -> new UserNotFoundException("Diplome"+ id+"was not found"));
     }
 
+    @Override
     public void deleteDiplome(Long id){
         diplomeRepository.deleteDiplomeById(id);
     }

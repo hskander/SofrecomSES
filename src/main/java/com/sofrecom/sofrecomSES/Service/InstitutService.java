@@ -15,22 +15,29 @@ public class InstitutService implements InstitutServiceInterface {
     public InstitutService(InstitutRepository institutRepository) {
         this.institutRepository = institutRepository;
     }
+
+    @Override
     public Institut addInstitut(Institut institut){
 
         return institutRepository.save(institut);
     }
+    @Override
     public List<Institut> getAllInstituts(){
 
         return institutRepository.findAll();
     }
+
+    @Override
     public  Institut updateInstitut(Institut institut){
         return institutRepository.save(institut);
     }
 
+    @Override
     public Institut getInstitutById(Long id){
         return institutRepository.findInstitutById(id).
                 orElseThrow(() -> new UserNotFoundException("Institut"+ id+"was not found"));
     }
+    @Override
     public void deleteInstitut(Long id){
         institutRepository.deleteInstitutById(id);
     }
