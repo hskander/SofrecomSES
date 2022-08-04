@@ -28,14 +28,20 @@ public class DirectionService implements DirectionServiceInterface {
         this.employeeRepository = employeeRepository;
     }
     @Override
-    public Direction addDirection(Direction direction,Long employeId) {
+    public Direction addDirection(Direction direction) {
+        return this.directionRepository.save(direction);
+    }
 
+    @Override
+    public Direction affecterManagerDirection(Long directionId, Long employeId) {
         Employe employe = this.employeeRepository.findEmployeById(employeId).
                 orElseThrow(() -> new UserNotFoundException("User with ID " + employeId + " was not found"));
-
+        Direction direction=this.directionRepository.findDirectionById(directionId).
+                orElseThrow(()->new UserNotFoundException("Direction with ID "+directionId+" was not found" ));
         direction.setManager(employe);
         return this.directionRepository.save(direction);
     }
+
     @Override
     public List<Direction> getAllDirections() {
         return directionRepository.findAll();

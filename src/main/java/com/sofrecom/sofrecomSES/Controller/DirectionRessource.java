@@ -39,10 +39,13 @@ public class DirectionRessource {
     }
 
     @PostMapping("/addDirection")
-    public ResponseEntity<Direction> addDirection(@RequestBody Direction direction, @RequestParam("employeId") Long  employeId){
-        return new ResponseEntity<> (this.directionService.addDirection(direction,employeId), HttpStatus.CREATED);
+    public ResponseEntity<Direction> addDirection(@RequestBody Direction direction){
+        return new ResponseEntity<> (this.directionService.addDirection(direction), HttpStatus.CREATED);
     }
-
+    @PutMapping("/affecterManagerDirection")
+    public ResponseEntity<Direction> affecterManagerDirection( @RequestParam("directionId") Long  directionId, @RequestParam("employeId") Long  employeId){
+        return new ResponseEntity<>(this.directionService.affecterManagerDirection(directionId,employeId),HttpStatus.OK);
+    }
     @DeleteMapping("/deleteDirection")
     public ResponseEntity<?> deleteDirection(@RequestParam("id") Long id){
         this.directionService.deleteDirection(id);

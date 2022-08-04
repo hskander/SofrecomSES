@@ -43,17 +43,23 @@ public class PoleService implements PoleServiceInterface {
     }
 
     @Override
-    public Pole addPole(Pole pole, Long DirectionId,Long EmployeeId) {
-
-        Employe employe = this.employeeRepository.findEmployeById(EmployeeId).
-                orElseThrow(() -> new UserNotFoundException("employe with ID " + EmployeeId + " was not found"));
+    public Pole addPole(Pole pole, Long DirectionId) {
         Direction direction = this.directionRepository.findDirectionById(DirectionId).
                 orElseThrow(() -> new UserNotFoundException("Direction with ID " + DirectionId + " was not found"));
-
-        pole.setManager(employe);
         pole.setDirection(direction);
         return this.poleRepository.save(pole);
     }
+
+    @Override
+    public Pole affecterManagerPole(Long poleId, Long employeeId) {
+        Employe employe = this.employeeRepository.findEmployeById(employeeId).
+                orElseThrow(() -> new UserNotFoundException("employe with ID " + employeeId + " was not found"));
+        Pole pole=this.poleRepository.findPoleById(poleId)
+                .orElseThrow(() -> new UserNotFoundException("Pole with ID " + poleId + " was not found"));
+        pole.setManager(employe);
+        return this.poleRepository.save(pole);
+    }
+
     @Override
     public Pole editPole(Pole pole){
         return this.poleRepository.save(pole);

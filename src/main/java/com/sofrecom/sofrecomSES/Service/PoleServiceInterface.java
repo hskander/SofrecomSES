@@ -9,7 +9,8 @@ public interface PoleServiceInterface {
     List<Pole> getAllPoles();
     Pole getPoleById(Long id);
     void deletePole(Long id);
-    Pole addPole(Pole pole, Long DirectionId,Long EmployeeId);
+    Pole addPole(Pole pole, Long DirectionId);
+    Pole affecterManagerPole(Long poleId,Long EmployeeId);
     Pole editPole(Pole pole);
     Employe findPoleManager(Long poleId);
     List<Employe> findEmployeesPole(Long poleId);

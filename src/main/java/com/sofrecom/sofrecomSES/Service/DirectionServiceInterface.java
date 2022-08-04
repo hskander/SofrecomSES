@@ -15,7 +15,8 @@ public interface DirectionServiceInterface {
 
     void deleteDirection(Long id);
 
-    Direction addDirection(Direction direction,Long employeId);
+    Direction addDirection(Direction direction);
+    Direction affecterManagerDirection(Long directionId,Long employeId);
     Employe findDirectionManager(Long directionId);
     List<Employe> findEmployeesDirection(Long directionId);
 }

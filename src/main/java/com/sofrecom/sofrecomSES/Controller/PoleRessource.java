@@ -41,12 +41,16 @@ public class PoleRessource {
     }
 
     @PostMapping("/addPole")
-    public ResponseEntity<Pole> addPole(@RequestBody Pole pole, @RequestParam("employeId") Long employeId,@RequestParam("directionId") Long directionId){
-        return new ResponseEntity<> (this.poleService.addPole(pole,directionId,employeId), HttpStatus.CREATED);
+    public ResponseEntity<Pole> addPole(@RequestBody Pole pole, @RequestParam("directionId") Long directionId){
+        return new ResponseEntity<> (this.poleService.addPole(pole,directionId), HttpStatus.CREATED);
+    }
+    @PutMapping("/affecterManagerPole")
+    public ResponseEntity<Pole> affecterManagerPole(@RequestParam("poleId") Long poleId,@RequestParam("employeId") Long employeId){
+        return new ResponseEntity<>(this.poleService.affecterManagerPole(poleId,employeId),HttpStatus.OK);
     }
 
     @PutMapping("/editPole")
-    public ResponseEntity<Pole> addPole(@RequestBody Pole pole){
+    public ResponseEntity<Pole> editPole(@RequestBody Pole pole){
         return new ResponseEntity<> (this.poleService.editPole(pole), HttpStatus.CREATED);
     }
 
