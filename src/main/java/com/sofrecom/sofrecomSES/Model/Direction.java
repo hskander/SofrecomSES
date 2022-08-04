@@ -1,5 +1,6 @@
 package com.sofrecom.sofrecomSES.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Direction implements Serializable {
 
     @OneToOne
     private Employe manager;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "direction")
     private List<Pole> poles;
 }
