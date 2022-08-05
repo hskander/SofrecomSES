@@ -39,6 +39,7 @@ public class DirectionService implements DirectionServiceInterface {
         Direction direction=this.directionRepository.findDirectionById(directionId).
                 orElseThrow(()->new UserNotFoundException("Direction with ID "+directionId+" was not found" ));
         direction.setManager(employe);
+        direction.setResponsableDirection(employe.getNom()+' '+employe.getPrenom());
         return this.directionRepository.save(direction);
     }
 

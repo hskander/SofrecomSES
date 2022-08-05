@@ -16,6 +16,6 @@ import java.util.List;
 @Transactional
 public interface ExperienceRepository extends JpaRepository<Experience,Long> {
     void deleteExperienceById(Long id);
-    @Query("SELECT e.employe FROM Experience e WHERE e.entreprise=:entreprise")
+    @Query("SELECT DISTINCT e.employe FROM Experience e WHERE e.entreprise=:entreprise")
     List<Employe> findEmployeesByEntreprise(@Param("entreprise")Entreprise entreprise);
 }

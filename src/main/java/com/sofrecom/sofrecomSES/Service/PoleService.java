@@ -57,6 +57,7 @@ public class PoleService implements PoleServiceInterface {
         Pole pole=this.poleRepository.findPoleById(poleId)
                 .orElseThrow(() -> new UserNotFoundException("Pole with ID " + poleId + " was not found"));
         pole.setManager(employe);
+        pole.setResponsablePole(employe.getNom()+' '+employe.getPrenom());
         return this.poleRepository.save(pole);
     }
 

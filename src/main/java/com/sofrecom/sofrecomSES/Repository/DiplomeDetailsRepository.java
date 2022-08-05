@@ -15,6 +15,6 @@ import java.util.List;
 @Transactional
 public interface DiplomeDetailsRepository extends JpaRepository<DiplomeDetails,Long> {
     void deleteDiplomeDetailById(Long id);
-    @Query("SELECT d.employe FROM DiplomeDetails d WHERE d.institut =:institut")
+    @Query("SELECT DISTINCT d.employe FROM DiplomeDetails d WHERE d.institut =:institut")
     List<Employe> findEmployeesByInstitut(@Param("institut") Institut institut);
 }

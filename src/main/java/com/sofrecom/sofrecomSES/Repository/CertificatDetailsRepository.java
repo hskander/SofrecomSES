@@ -16,6 +16,6 @@ import java.util.List;
 @Transactional
 public interface CertificatDetailsRepository extends JpaRepository<CertificatDetails,Long> {
     void deleteCertificatDetailsById(Long id);
-    @Query("SELECT cd.employe FROM CertificatDetails cd WHERE cd.centreFormation=:centreFormation")
+    @Query("SELECT DISTINCT cd.employe FROM CertificatDetails cd WHERE cd.centreFormation=:centreFormation")
     List<Employe> findEmployeesByCentreFormation(@Param("centreFormation") CentreFormation centreFormation);
 }
