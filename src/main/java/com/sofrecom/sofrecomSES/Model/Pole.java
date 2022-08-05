@@ -19,7 +19,7 @@ public class Pole implements Serializable {
     private String description;
     private String responsablePole;
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pole")
+    @OneToMany(mappedBy = "pole")
     private List<Employe> employes;
 
     @ManyToOne

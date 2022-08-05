@@ -7,6 +7,7 @@ import com.sofrecom.sofrecomSES.Model.Employe;
 import com.sofrecom.sofrecomSES.Model.Pole;
 import com.sofrecom.sofrecomSES.Repository.DirectionRepository;
 import com.sofrecom.sofrecomSES.Repository.EmployeeRepository;
+import com.sofrecom.sofrecomSES.Repository.PoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +19,16 @@ public class DirectionService implements DirectionServiceInterface {
 
     private final DirectionRepository directionRepository;
     private final EmployeeRepository employeeRepository;
-
+    private final PoleRepository poleRepository;
 
 
     @Autowired
-    public DirectionService(DirectionRepository directionRepository,EmployeeRepository employeeRepository)
+    public DirectionService(DirectionRepository directionRepository,EmployeeRepository employeeRepository
+    ,PoleRepository poleRepository)
     {
         this.directionRepository = directionRepository;
         this.employeeRepository = employeeRepository;
+        this.poleRepository=poleRepository;
     }
     @Override
     public Direction addDirection(Direction direction) {
@@ -58,6 +61,11 @@ public class DirectionService implements DirectionServiceInterface {
     }
     @Override
     public void deleteDirection(Long id) {
+        Direction direction= this.getDirectionById(id);
+        for(Pole p:direction.getPoles()){
+            p.setDirection(null);
+            this.poleRepository.save(p);
+        }
         directionRepository.deleteDirectionById(id);
     }
 

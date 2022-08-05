@@ -39,6 +39,11 @@ public class PoleService implements PoleServiceInterface {
     }
     @Override
     public void deletePole(Long id) {
+        Pole pole =this.getPoleById(id);
+        for(Employe e:pole.getEmployes()){
+            e.setPole(null);
+            this.employeeRepository.save(e);
+        }
         poleRepository.deletePoleById(id);
     }
 
