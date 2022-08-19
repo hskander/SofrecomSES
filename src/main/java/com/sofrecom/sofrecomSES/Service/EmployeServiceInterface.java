@@ -18,6 +18,8 @@ public interface EmployeServiceInterface {
     List<Employe> findEmployeesByNomPrenomEmail(String nomPrenom);
     List<Employe> findEmployeesByPoste(String poste);
     List<Employe> findEmployeesByCentreFormation(Long centreFormationId);
+    List<Employe> findEmployeesByCertificat(Long certificatId);
     List<Employe> findEmployeesByInstitut(Long institutId);
+    List<Employe> findEmployeesByDiplome(Long diplomeId);
     List<Employe> findEmployeesByEntreprise(Long entrepriseId);
 }

@@ -107,9 +107,17 @@ public class EmployeRessource {
     public ResponseEntity<List<Employe>> getEmployeesByCentreFormation(@RequestParam("centreFormationId") Long centreFormationId){
         return new ResponseEntity<>(this.employeeService.findEmployeesByCentreFormation(centreFormationId), HttpStatus.OK);
     }
+    @GetMapping("/getEmployeesByCertificat")
+    public ResponseEntity<List<Employe>> getEmployeesByCertificat(@RequestParam("certificatId") Long certificatId){
+        return new ResponseEntity<>(this.employeeService.findEmployeesByCertificat(certificatId), HttpStatus.OK);
+    }
     @GetMapping("/getEmployeesByInstitut")
     public ResponseEntity<List<Employe>> getEmployeesByInstitut(@RequestParam("institutId") Long institutId){
         return new ResponseEntity<>(this.employeeService.findEmployeesByInstitut(institutId), HttpStatus.OK);
+    }
+    @GetMapping("/getEmployeesByDiplome")
+    public ResponseEntity<List<Employe>> getEmployeesByDiplome(@RequestParam("diplomeId") Long diplomeId){
+        return new ResponseEntity<>(this.employeeService.findEmployeesByDiplome(diplomeId), HttpStatus.OK);
     }
     @GetMapping("/getEmployeesByEntreprise")
     public ResponseEntity<List<Employe>> getEmployeesByEntreprise(@RequestParam("entrepriseId") Long entrepriseId){

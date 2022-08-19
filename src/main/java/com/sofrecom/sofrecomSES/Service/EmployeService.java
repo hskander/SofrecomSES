@@ -22,7 +22,9 @@ public class EmployeService implements EmployeServiceInterface {
     private final DiplomeDetailsServiceInterface diplomeDetailsService;
     private final CertificatDetailsServiceInterface certificatDetailsService;
     private final CentreFormationRepository centreFormationRepository;
+    private final CertificatRepositry certificatRepositry;
     private final InstitutRepository institutRepository;
+    private final DiplomeRepository diplomeRepository;
     private final EntrepriseRepository entrepriseRepository;
     private final ExperienceRepository experienceRepository;
     private final DiplomeDetailsRepository diplomeDetailsRepository;
@@ -33,7 +35,8 @@ public class EmployeService implements EmployeServiceInterface {
                           ExperienceServiceInterface experienceService, DiplomeDetailsServiceInterface diplomeDetailsService, CertificatDetailsServiceInterface certificatDetailsService
                           ,CentreFormationRepository centreFormationRepository, InstitutRepository institutRepository,
                           EntrepriseRepository entrepriseRepository,ExperienceRepository experienceRepository,
-                          DiplomeDetailsRepository diplomeDetailsRepository,CertificatDetailsRepository certificatDetailsRepository) {
+                          DiplomeDetailsRepository diplomeDetailsRepository,CertificatDetailsRepository certificatDetailsRepository,
+                          DiplomeRepository diplomeRepository, CertificatRepositry certificatRepositry) {
         this.employeeRepo = employeeRepo;
         this.poleRepo=poleRepo;
         this.posteRepo=posteRepo;
@@ -41,7 +44,9 @@ public class EmployeService implements EmployeServiceInterface {
         this.certificatDetailsService=certificatDetailsService;
         this.diplomeDetailsService=diplomeDetailsService;
         this.centreFormationRepository=centreFormationRepository;
+        this.certificatRepositry=certificatRepositry;
         this.institutRepository=institutRepository;
+        this.diplomeRepository=diplomeRepository;
         this.entrepriseRepository=entrepriseRepository;
         this.experienceRepository=experienceRepository;
         this.diplomeDetailsRepository=diplomeDetailsRepository;
@@ -128,12 +133,24 @@ public class EmployeService implements EmployeServiceInterface {
         return this.certificatDetailsRepository.findEmployeesByCentreFormation(centreFormation);
 
     }
+    @Override
+    public List<Employe> findEmployeesByCertificat(Long certificatId) {
+        Certificat certificat=this.certificatRepositry.findCertificatById(certificatId).
+                orElseThrow(()->new UserNotFoundException("certificat with ID "+certificatId+" was not found" ));
+        return this.certificatDetailsRepository.findEmployeesByCertificat(certificat);
+    }
 
     @Override
     public List<Employe> findEmployeesByInstitut(Long institutId) {
         Institut institut=this.institutRepository.findInstitutById(institutId).
                 orElseThrow(()->new UserNotFoundException("institut with ID "+institutId+" was not found" ));
         return this.diplomeDetailsRepository.findEmployeesByInstitut(institut);
+    }
+    @Override
+    public List<Employe> findEmployeesByDiplome(Long diplomeId) {
+        Diplome diplome=this.diplomeRepository.findDiplomeById(diplomeId).
+                orElseThrow(()->new UserNotFoundException("diplome with ID "+diplomeId+" was not found" ));
+        return this.diplomeDetailsRepository.findEmployeesByDiplome(diplome);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.sofrecom.sofrecomSES.Repository;
 
 import com.sofrecom.sofrecomSES.Model.CentreFormation;
+import com.sofrecom.sofrecomSES.Model.Certificat;
 import com.sofrecom.sofrecomSES.Model.CertificatDetails;
 import com.sofrecom.sofrecomSES.Model.Employe;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +19,6 @@ public interface CertificatDetailsRepository extends JpaRepository<CertificatDet
     void deleteCertificatDetailsById(Long id);
     @Query("SELECT DISTINCT cd.employe FROM CertificatDetails cd WHERE cd.centreFormation=:centreFormation")
     List<Employe> findEmployeesByCentreFormation(@Param("centreFormation") CentreFormation centreFormation);
+    @Query("SELECT DISTINCT cd.employe FROM CertificatDetails cd WHERE cd.certificat=:certificat")
+    List<Employe> findEmployeesByCertificat(@Param("certificat") Certificat certificat);
 }
