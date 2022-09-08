@@ -14,6 +14,7 @@ public class EmployeService implements EmployeServiceInterface {
     //Repositories
     private final EmployeeRepository employeeRepo;
     private final PoleRepository poleRepo;
+    private final DirectionRepository directionRepo;
     private final PosteRepository posteRepo;
 
     //Services
@@ -31,7 +32,7 @@ public class EmployeService implements EmployeServiceInterface {
     private final CertificatDetailsRepository certificatDetailsRepository;
 
     @Autowired
-    public EmployeService(EmployeeRepository employeeRepo,PoleRepository poleRepo,PosteRepository posteRepo,
+    public EmployeService(EmployeeRepository employeeRepo,PoleRepository poleRepo,DirectionRepository directionRepo,PosteRepository posteRepo,
                           ExperienceServiceInterface experienceService, DiplomeDetailsServiceInterface diplomeDetailsService, CertificatDetailsServiceInterface certificatDetailsService
                           ,CentreFormationRepository centreFormationRepository, InstitutRepository institutRepository,
                           EntrepriseRepository entrepriseRepository,ExperienceRepository experienceRepository,
@@ -39,6 +40,7 @@ public class EmployeService implements EmployeServiceInterface {
                           DiplomeRepository diplomeRepository, CertificatRepositry certificatRepositry) {
         this.employeeRepo = employeeRepo;
         this.poleRepo=poleRepo;
+        this.directionRepo=directionRepo;
         this.posteRepo=posteRepo;
         this.experienceService=experienceService;
         this.certificatDetailsService=certificatDetailsService;
@@ -54,12 +56,14 @@ public class EmployeService implements EmployeServiceInterface {
     }
     @Override
     public Employe addEmployee(Employe employe, Long posteId, Long poleId){
-
-        Pole pole = this.poleRepo.findPoleById(poleId).
-                orElseThrow(()->new UserNotFoundException("Pole with ID "+poleId+" was not found" ));
+        if(poleId!=0){
+            Pole pole = this.poleRepo.findPoleById(poleId).
+                    orElseThrow(()->new UserNotFoundException("Pole with ID "+poleId+" was not found" ));
+            employe.setPole(pole);
+        }
         Poste poste= this.posteRepo.findPosteById(posteId).
                 orElseThrow(()->new UserNotFoundException("Poste with ID "+posteId+" was not found" ));
-        employe.setPole(pole);
+
         employe.setPoste(poste);
         employe.setEmployeCode(UUID.randomUUID().toString());
 
@@ -97,23 +101,61 @@ public class EmployeService implements EmployeServiceInterface {
     }
     @Override
     public Employe updateEmployee(Employe e){
+        Employe employe =this.employeeRepo.findEmployeById(e.getId())
+                .orElseThrow(()->new UserNotFoundException("Employe with ID "+e.getId()+" was not found" ));
+        e.setPole(employe.getPole());
+        e.setListCertificatDetails(employe.getListCertificatDetails());
+        e.setListDiplomeDetails(employe.getListDiplomeDetails());
+        e.setExperiences(employe.getExperiences());
         return this.employeeRepo.save(e);
     }
     @Override
+    public Employe editEmployeePole(Long employeeId,Long  poleId){
+        Employe employe =this.employeeRepo.findEmployeById(employeeId)
+                .orElseThrow(()->new UserNotFoundException("Employe with ID "+employeeId+" was not found" ));
+        Pole pole =this.poleRepo.findPoleById(poleId)
+                .orElseThrow(()->new UserNotFoundException("Pole with ID "+poleId+" was not found" ));
+        employe.setPole(pole);
+        return this.employeeRepo.save(employe);
+    }
+    @Override
     public void deleteEmployee(Long id){
+       Direction direction= this.directionRepo.findDirectionByManager(id);
+       Pole pole = this.poleRepo.findPoleByManager(id);
+       if(direction!=null){
+           direction.setManager(null);
+       }
+       if(pole!=null){
+           pole.setManager(null);
+       }
         this.employeeRepo.deleteEmployeById(id);
     }
+
     @Override
-    public Employe findEmployePoleManager(Long emlpoyeId){
-        Employe employe =this.employeeRepo.findEmployeById(emlpoyeId)
-                .orElseThrow(()->new UserNotFoundException("Employe with ID "+emlpoyeId+" was not found" ));
-        return employe.getPole().getManager();
+    public Pole findEmployePole(Long id) {
+        Pole testPole=new Pole();
+        Employe employe =this.employeeRepo.findEmployeById(id)
+                .orElseThrow(()->new UserNotFoundException("Employe with ID "+id+" was not found" ));
+        if(employe.getPole()!=null){
+            return employe.getPole();
+        }else{
+            return testPole;
+        }
+
     }
+
     @Override
     public Employe findEmployeDirectionManager(Long emlpoyeId){
+        Employe testEmploye=new Employe();
         Employe employe =this.employeeRepo.findEmployeById(emlpoyeId)
                 .orElseThrow(()->new UserNotFoundException("Employe with ID "+emlpoyeId+" was not found" ));
-        return employe.getPole().getDirection().getManager();
+        if(employe.getPole()!=null&&employe.getPole().getDirection()!=null&&employe.getPole().getDirection().getManager()!=null){
+
+            return employe.getPole().getDirection().getManager();
+        }else{
+            return testEmploye;
+        }
+
     }
 
     @Override
@@ -160,5 +202,32 @@ public class EmployeService implements EmployeServiceInterface {
         return this.experienceRepository.findEmployeesByEntreprise(entreprise);
     }
 
+    @Override
+    public List<Employe> findMales(Genre genre) {
+        return this.employeeRepo.findMales(genre);
+    }
+    @Override
+    public List<Employe> findFemales(Genre genre) {
+        return this.employeeRepo.findFemales(genre);
+    }
+
+    @Override
+    public List<Employe> findCelibataire(SituationFamilale sf) {
+        return this.employeeRepo.findCelibataire(sf);
+    }
+
+    @Override
+    public List<Employe> findMarie(SituationFamilale sf) {
+        return this.employeeRepo.findMarie(sf);
+    }
+
+    @Override
+    public List<Employe> findEmployeByYearRecrut(int year) {
+        return this.employeeRepo.findEmployeByYearRecrut(year);
+    }
+    @Override
+    public List<Employe> findEmployeByYearDepart(int year) {
+        return this.employeeRepo.findEmployeByYearDepart(year);
+    }
 
 }

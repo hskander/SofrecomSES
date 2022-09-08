@@ -43,8 +43,8 @@ public class EntrepriseRessource {
         return new ResponseEntity<>(updateEntreprise, HttpStatus.OK);
     }
 
-    @DeleteMapping ("/delete/{id}")
-    public ResponseEntity<?> DeleteEntreprise(@PathVariable("id") Long id) {
+    @DeleteMapping ("/delete")
+    public ResponseEntity<?> DeleteEntreprise(@RequestParam("id") Long id) {
         entrepriseService.deleteEntreprise(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

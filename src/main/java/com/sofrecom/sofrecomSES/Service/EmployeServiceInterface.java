@@ -1,6 +1,7 @@
 package com.sofrecom.sofrecomSES.Service;
 
 import com.sofrecom.sofrecomSES.Model.*;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -12,8 +13,9 @@ public interface EmployeServiceInterface {
     List<Employe> getAllEmployees();
     Employe getEmployeById(Long id);
     Employe updateEmployee(Employe e);
+    Employe editEmployeePole(Long employeeId,Long  poleId);
     void deleteEmployee(Long id);
-    Employe findEmployePoleManager(Long emlpoyeId);
+    Pole findEmployePole(Long id);
     public Employe findEmployeDirectionManager(Long emlpoyeId);
     List<Employe> findEmployeesByNomPrenomEmail(String nomPrenom);
     List<Employe> findEmployeesByPoste(String poste);
@@ -22,4 +24,10 @@ public interface EmployeServiceInterface {
     List<Employe> findEmployeesByInstitut(Long institutId);
     List<Employe> findEmployeesByDiplome(Long diplomeId);
     List<Employe> findEmployeesByEntreprise(Long entrepriseId);
+    List<Employe> findMales(Genre genre);
+    List<Employe> findFemales(Genre genre);
+    List<Employe> findCelibataire(SituationFamilale genre);
+    List<Employe> findMarie(SituationFamilale genre);
+    List<Employe> findEmployeByYearRecrut(@Param("year") int year);
+    List<Employe> findEmployeByYearDepart(@Param("year") int year);
 }

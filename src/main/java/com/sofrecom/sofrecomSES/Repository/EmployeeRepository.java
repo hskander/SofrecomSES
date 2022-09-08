@@ -1,6 +1,8 @@
 package com.sofrecom.sofrecomSES.Repository;
 
 import com.sofrecom.sofrecomSES.Model.Employe;
+import com.sofrecom.sofrecomSES.Model.Genre;
+import com.sofrecom.sofrecomSES.Model.SituationFamilale;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,5 +22,20 @@ public interface EmployeeRepository extends JpaRepository<Employe,Long> {
     List<Employe> findEmployeesByNomPrenomEmail(@Param("nomPrenom")String nomPrenom);
     @Query("SELECT e fROM Employe e where e.poste.poste LIKE %:poste% ")
     List<Employe> findEmployeesByPoste(@Param("poste") String poste);
+    @Query("SELECT e FROM Employe e where e.genre=:genre")
+    List<Employe> findMales(Genre genre);
+    @Query("SELECT e FROM Employe e where e.genre=:genre")
+    List<Employe> findFemales(Genre genre);
+    @Query("SELECT e FROM Employe e where e.situationFam=:situationFam")
+    List<Employe> findCelibataire(SituationFamilale situationFam);
+    @Query("SELECT e FROM Employe e where e.situationFam=:situationFam")
+    List<Employe> findMarie(SituationFamilale situationFam);
 
+    @Query("SELECT e FROM Employe e where EXTRACT(YEAR FROM e.dateRecrut)=:year")
+    List<Employe> findEmployeByYearRecrut(@Param("year") int year);
+    @Query("SELECT e FROM Employe e where EXTRACT(YEAR FROM e.dateDepart)=:year")
+    List<Employe> findEmployeByYearDepart(@Param("year") int year);
+
+    @Query("SELECT e FROM Employe e where e.poste.id=:id")
+    List<Employe> employeesByIdPoste(Long id);
 }

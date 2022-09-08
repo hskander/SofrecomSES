@@ -43,8 +43,8 @@ public class InstitutRessource {
         return new ResponseEntity<>(updateInsitut, HttpStatus.OK);
     }
 
-    @DeleteMapping ("/delete/{id}")
-    public ResponseEntity<?> deleteInstitut(@PathVariable("id") Long id) {
+    @DeleteMapping ("/delete")
+    public ResponseEntity<?> deleteInstitut(@RequestParam("id") Long id) {
         institutService.deleteInstitut(id);
         return new ResponseEntity<>(HttpStatus.OK);
 

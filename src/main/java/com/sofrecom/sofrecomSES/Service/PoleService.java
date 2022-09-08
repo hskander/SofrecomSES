@@ -70,18 +70,7 @@ public class PoleService implements PoleServiceInterface {
     public Pole editPole(Pole pole){
         return this.poleRepository.save(pole);
     }
-    @Override
-    public Employe findPoleManager(Long poleId){
-        Pole pole =this.poleRepository.findPoleById(poleId).
-                orElseThrow(()->new UserNotFoundException("pole with ID "+poleId+" was not found" ));
-        return pole.getManager();
-    }
 
-    @Override
-    public List<Employe> findEmployeesPole(Long poleId) {
-        return this.poleRepository.findPoleById(poleId).
-                orElseThrow(()->new UserNotFoundException("Pole with ID "+poleId+" was not found" )).getEmployes();
-    }
 }
 
 

@@ -38,8 +38,8 @@ public class CertificatRessource {
 
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteCertificat(@PathVariable("id") Long id){
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteCertificat(@RequestParam("id") Long id){
         certificatService.deleteCertificat(id);
         return new ResponseEntity<>(HttpStatus.OK);
 

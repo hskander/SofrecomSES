@@ -44,8 +44,8 @@ public class CentreFormationRessource {
 
     }
 
-    @DeleteMapping ("/delete/{id}")
-    public ResponseEntity<?> deleteCentreFormation(@PathVariable("id") Long id) {
+    @DeleteMapping ("/delete")
+    public ResponseEntity<?> deleteCentreFormation(@RequestParam("id") Long id) {
         centreFormationService.deleteCentreFormation(id);
         return new ResponseEntity<>(HttpStatus.OK);
 

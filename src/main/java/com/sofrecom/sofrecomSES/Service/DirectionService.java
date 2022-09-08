@@ -87,4 +87,11 @@ public class DirectionService implements DirectionServiceInterface {
         return allEmployeesDirection;
     }
 
+    @Override
+    public Direction findDirectionByManager(Long id) {
+        Direction direction= this.directionRepository.findDirectionByManager(id);
+
+        return direction;
+    }
+
 }

@@ -38,8 +38,8 @@ public class PosteRessource {
 
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deletePoste(@PathVariable("id") Long id){
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deletePoste(@RequestParam("id") Long id){
         posteService.deletePoste(id);
         return new ResponseEntity<>(HttpStatus.OK);
 

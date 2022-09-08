@@ -26,7 +26,8 @@ public class Employe implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateNaissance;
     private String LieuNaissance;
-    private String Nationalite;
+    private String nationalite;
+    private String image;
     //@Column(nullable = false)
     private String mail;
     @Temporal(TemporalType.DATE)
@@ -52,7 +53,8 @@ public class Employe implements Serializable {
     //cin Passeport
 
     private String civilite;
-    private String situationFam;
+    @Enumerated(EnumType.STRING)
+    private SituationFamilale situationFam;
     private int nbEnfant;
     private Float SalaireBrute;
 
@@ -71,6 +73,7 @@ public class Employe implements Serializable {
     private Boolean enConge;
 
     //Les Relations
+    @JsonIgnore
     @ManyToOne
     private Pole pole;
     @ManyToOne
@@ -87,7 +90,4 @@ public class Employe implements Serializable {
     @JsonIgnore
     @ManyToMany
     private List<Projet> projets;
-
-
-
 }

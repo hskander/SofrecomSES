@@ -41,7 +41,9 @@ public class ExperienceService implements ExperienceServiceInterface {
         return experienceRepository.findAll();
     }
     @Override
-    public Experience updateExperience(Experience experience){
+    public Experience updateExperience(Experience experience, Long employeId){
+        experience.setEmploye(this.employeeRepository.findEmployeById(employeId)
+                .orElseThrow(()->new UserNotFoundException("Employe with ID "+employeId+" was not found" )));
         return experienceRepository.save(experience);
     }
     @Override

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
+@CrossOrigin
 @RequestMapping("/Direction")
 public class DirectionRessource {
     private final DirectionServiceInterface directionService;
@@ -46,13 +47,21 @@ public class DirectionRessource {
     public ResponseEntity<Direction> affecterManagerDirection( @RequestParam("directionId") Long  directionId, @RequestParam("employeId") Long  employeId){
         return new ResponseEntity<>(this.directionService.affecterManagerDirection(directionId,employeId),HttpStatus.OK);
     }
+    @GetMapping("/findDirectionManager")
+    public ResponseEntity<Employe> findDirectionManager(@RequestParam("id") Long id){
+        return  new ResponseEntity<>(this.directionService.findDirectionManager(id),HttpStatus.OK);
+    }
     @DeleteMapping("/deleteDirection")
     public ResponseEntity<?> deleteDirection(@RequestParam("id") Long id){
         this.directionService.deleteDirection(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @GetMapping("/findEmployeesDirection")
+    @GetMapping("/employeesByDirection")
     public ResponseEntity<List<Employe>> findEmployeesDirection(@RequestParam("directionId") Long directionId){
         return new ResponseEntity<>(this.directionService.findEmployeesDirection(directionId), HttpStatus.OK);
+    }
+    @GetMapping("/findDirectionByManager")
+    public ResponseEntity<Direction> findDirectionByManager(@RequestParam("id") Long id){
+        return new ResponseEntity<>(this.directionService.findDirectionByManager(id), HttpStatus.OK);
     }
 }

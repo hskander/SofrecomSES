@@ -41,8 +41,8 @@ public class DiplomeRessource {
         return new ResponseEntity<>(updateDiplome, HttpStatus.OK);
     }
 
-    @DeleteMapping ("/delete/{id}")
-    public ResponseEntity<?> deleteDiplome(@PathVariable("id") Long id) {
+    @DeleteMapping ("/delete")
+    public ResponseEntity<?> deleteDiplome(@RequestParam("id") Long id) {
         diplomeService.deleteDiplome(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

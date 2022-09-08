@@ -18,14 +18,14 @@ public class Pole implements Serializable {
     private String pole;
     private String description;
     private String responsablePole;
-    @JsonIgnore
+
     @OneToMany(mappedBy = "pole")
     private List<Employe> employes;
 
     @ManyToOne
     private Direction direction;
 
-    @JsonIgnore
+
     @OneToOne
     private Employe manager;
 }

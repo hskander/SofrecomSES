@@ -41,8 +41,10 @@ public class DiplomeDetailsService implements DiplomeDetailsServiceInterface {
     }
 
     @Override
-    public DiplomeDetails updateDiplomeDetails(DiplomeDetails diplomeDetail){
-        return diplomeDetailsRepository.save(diplomeDetail);
+    public DiplomeDetails updateDiplomeDetails(DiplomeDetails diplomeDetails,Long employeId){
+        diplomeDetails.setEmploye(this.employeeRepository.findEmployeById(employeId)
+                .orElseThrow(()->new UserNotFoundException("Employe with ID "+employeId+" was not found" )));
+        return diplomeDetailsRepository.save(diplomeDetails);
     }
 
     @Override

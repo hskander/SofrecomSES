@@ -45,8 +45,10 @@ public class CertificatDetailsService implements CertificatDetailsServiceInterfa
     }
 
     @Override
-    public CertificatDetails updateCertificatDetails(CertificatDetails certifDetail){
-        return certificatDetailsRepository.save(certifDetail);
+    public CertificatDetails updateCertificatDetails(CertificatDetails CertifDetails, Long employeId){
+        CertifDetails.setEmploye(this.employeeRepository.findEmployeById(employeId)
+                .orElseThrow(()->new UserNotFoundException("Employe with ID "+employeId+" was not found" )));
+        return certificatDetailsRepository.save(CertifDetails);
     }
 
     @Override

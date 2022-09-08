@@ -50,11 +50,24 @@ public class EmployeRessource {
     {
         return new ResponseEntity<>(this.employeeService.updateEmployee(employee),HttpStatus.OK);
     }
+    @PutMapping("/editEmployeePole")
+    public ResponseEntity<Employe> editEmployeePole(@RequestParam("employeeId") Long employeeId,@RequestParam("poleId") Long poleId)
+    {
+        return new ResponseEntity<>(this.employeeService.editEmployeePole(employeeId,poleId),HttpStatus.OK);
+    }
+    @GetMapping("/findEmployePole")
+    public ResponseEntity<Pole> findEmployePole(@RequestParam("id") Long id){
+        return  new ResponseEntity<>(this.employeeService.findEmployePole(id),HttpStatus.OK);
+    }
+    @GetMapping("/findEmployeDirectionManager")
+    public ResponseEntity<Employe> findEmployeDirectionManager(@RequestParam("id") Long id){
+        return  new ResponseEntity<>(this.employeeService.findEmployeDirectionManager(id),HttpStatus.OK);
+    }
 
     @PutMapping("/editCertificatDetails")
-    public ResponseEntity<CertificatDetails> updateCertificatDetails(@RequestBody CertificatDetails certifDetail)
+    public ResponseEntity<CertificatDetails> updateCertificatDetails(@RequestBody CertificatDetails certifDetail,@RequestParam("id") Long id)
     {
-        return new ResponseEntity<>(this.certificatDetailsService.updateCertificatDetails(certifDetail),HttpStatus.OK);
+        return new ResponseEntity<>(this.certificatDetailsService.updateCertificatDetails(certifDetail, id),HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteCertifDetails")
@@ -64,9 +77,9 @@ public class EmployeRessource {
     }
 
     @PutMapping("/editDiplomeDetails")
-    public ResponseEntity<DiplomeDetails> updateDiplomeDetails(@RequestBody DiplomeDetails diplomeDetail)
+    public ResponseEntity<DiplomeDetails> updateDiplomeDetails(@RequestBody DiplomeDetails diplomeDetails,@RequestParam("id") Long id)
     {
-        return new ResponseEntity<>(this.diplomeDetailService.updateDiplomeDetails(diplomeDetail),HttpStatus.OK);
+        return new ResponseEntity<>(this.diplomeDetailService.updateDiplomeDetails(diplomeDetails,id),HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteDiplomeDetails")
@@ -75,19 +88,19 @@ public class EmployeRessource {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/AffecterDiplomeEmployee")
+    @PostMapping("/AffecterDiplomeEmployee")
     public ResponseEntity<Employe> AffecterDiplomeEmployee(@RequestBody DiplomeDetails diplomeDetails,@RequestParam("employeId") Long employeId
             ,@RequestParam("diplomeId")Long diplomeId,@RequestParam("institutId") Long institutId)
     {
         return new ResponseEntity<>(this.employeeService.AffecterDiplomeEmployee(diplomeDetails,employeId,diplomeId,institutId),HttpStatus.OK);
     }
-    @PutMapping("/AffecterCertificatEmployee")
+    @PostMapping("/AffecterCertificatEmployee")
     public ResponseEntity<Employe> AffecterCertificatEmployee(@RequestBody CertificatDetails certificatDetails,@RequestParam("employeId") Long employeId
             ,@RequestParam("certificatId")Long certificatId,@RequestParam("centreFormationId") Long centreFomationId)
     {
         return new ResponseEntity<>(this.employeeService.AffecterCertificatEmployee(certificatDetails,employeId,certificatId,centreFomationId),HttpStatus.OK);
     }
-    @PutMapping("/AffecterExperienceEmployee")
+    @PostMapping("/AffecterExperienceEmployee")
     public ResponseEntity<Employe> AffecterExperienceEmployee(@RequestBody Experience experience,@RequestParam("employeId") Long employeId
     ,@RequestParam("entrepriseId") Long entrepriseId)
     {
@@ -122,5 +135,29 @@ public class EmployeRessource {
     @GetMapping("/getEmployeesByEntreprise")
     public ResponseEntity<List<Employe>> getEmployeesByEntreprise(@RequestParam("entrepriseId") Long entrepriseId){
         return new ResponseEntity<>(this.employeeService.findEmployeesByEntreprise(entrepriseId), HttpStatus.OK);
+    }
+    @GetMapping("/findMales")
+    public ResponseEntity<List<Employe>> findMales(){
+        return  new ResponseEntity<>(this.employeeService.findMales(Genre.MALE),HttpStatus.OK);
+    }
+    @GetMapping("/findFemales")
+    public ResponseEntity<List<Employe>> findFemales(){
+        return  new ResponseEntity<>(this.employeeService.findFemales(Genre.FEMALE),HttpStatus.OK);
+    }
+    @GetMapping("/findCelibataire")
+    public ResponseEntity<List<Employe>> findCelibataire(){
+        return  new ResponseEntity<>(this.employeeService.findCelibataire(SituationFamilale.CELIBATAIRE),HttpStatus.OK);
+    }
+    @GetMapping("/findMarie")
+    public ResponseEntity<List<Employe>> findMarie(){
+        return  new ResponseEntity<>(this.employeeService.findMarie(SituationFamilale.MARIE),HttpStatus.OK);
+    }
+    @GetMapping("/findEmployeByYearRecrut")
+    public ResponseEntity<List<Employe>> findEmployeByYearRecrut(@RequestParam("year") int year){
+        return  new ResponseEntity<>(this.employeeService.findEmployeByYearRecrut(year),HttpStatus.OK);
+    }
+    @GetMapping("/findEmployeByYearDepart")
+    public ResponseEntity<List<Employe>> findEmployeByYearDepart(@RequestParam("year") int year){
+        return  new ResponseEntity<>(this.employeeService.findEmployeByYearDepart(year),HttpStatus.OK);
     }
 }

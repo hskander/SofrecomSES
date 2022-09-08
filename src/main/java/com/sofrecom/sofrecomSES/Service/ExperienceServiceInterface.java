@@ -5,7 +5,7 @@ import com.sofrecom.sofrecomSES.Model.Experience;
 import java.util.List;
 
 public interface ExperienceServiceInterface {
-    Experience updateExperience(Experience experience);
+    Experience updateExperience(Experience experience, Long employeId);
     void deleteExperience(Long id);
     List<Experience> findAllExperience();
     Experience addExperience(Experience experience, Long entrepriseId, Long employeeId);

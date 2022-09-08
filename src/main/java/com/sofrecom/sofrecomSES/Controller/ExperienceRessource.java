@@ -32,14 +32,14 @@ public class ExperienceRessource {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Experience> updateExperience(@RequestBody Experience experience){
-        Experience updateExperience = experienceService.updateExperience(experience);
+    public ResponseEntity<Experience> updateExperience(@RequestBody Experience experience ,@RequestParam("id") Long id){
+        Experience updateExperience = experienceService.updateExperience(experience, id);
         return new ResponseEntity<>(updateExperience, HttpStatus.OK);
 
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteExperience(@PathVariable("id") Long id){
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteExperience(@RequestParam("id") Long id){
         experienceService.deleteExperience(id);
         return new ResponseEntity<>(HttpStatus.OK);
 

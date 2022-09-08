@@ -19,4 +19,6 @@ public interface DirectionServiceInterface {
     Direction affecterManagerDirection(Long directionId,Long employeId);
     Employe findDirectionManager(Long directionId);
     List<Employe> findEmployeesDirection(Long directionId);
+
+    Direction findDirectionByManager(Long id);
 }

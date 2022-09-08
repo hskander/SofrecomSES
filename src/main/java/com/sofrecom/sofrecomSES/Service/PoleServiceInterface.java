@@ -12,6 +12,4 @@ public interface PoleServiceInterface {
     Pole addPole(Pole pole, Long DirectionId);
     Pole affecterManagerPole(Long poleId,Long EmployeeId);
     Pole editPole(Pole pole);
-    Employe findPoleManager(Long poleId);
-    List<Employe> findEmployeesPole(Long poleId);
 }

@@ -53,9 +53,4 @@ public class PoleRessource {
     public ResponseEntity<Pole> editPole(@RequestBody Pole pole){
         return new ResponseEntity<> (this.poleService.editPole(pole), HttpStatus.CREATED);
     }
-
-    @GetMapping("/EmployeesByPole")
-    public ResponseEntity<List<Employe>> findEmployeesPole(@RequestParam("poleId") Long poleId){
-        return new ResponseEntity<>(this.poleService.findEmployeesPole(poleId), HttpStatus.OK);
-    }
 }
